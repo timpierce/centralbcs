@@ -1,0 +1,45 @@
+{% extends "signup/base.html" %}
+{% load signup_extras %}
+{% load static from staticfiles %}
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/f2f_list.css' %}" media="screen"/>
+{% endblock %}
+{% block content %}
+    <div id="text">
+        <p>
+            <strong>Select a group that matches your schedule!</strong> All groups meet at 6:30pm. Once a group is full
+            it will be marked as closed. If you can't
+            find an open group that fits your schedule, please <a href="mailto:smallgroups@centralbcs.org">send us an
+            email</a> so
+            we can help find a group for you.
+        </p>
+    </div>
+    <div class="F2FGroupsTable">
+        <table>
+            <tr>
+                <td></td>
+                <td>Leaders</td>
+                <td>Hosts</td>
+                <td>Neighborhood</td>
+                <td>Meets On</td>
+            </tr>
+            {% for group in groups %}
+                <tr>
+                    {% if group|has_openings:"adult_education" %}
+                        <td><a href="addme/{{ group.id }}/?kiosk={{ kiosk }}">Join Group</a></td>
+                        <td>{{ group.leaders }}</td>
+                        <td>{{ group.hosts }}</td>
+                        <td>{{ group.location }}</td>
+                        <td>{{ group.day_of_week }}</td>
+                    {% else %}
+                        <td style="background-color: darkgray;">CLOSED</td>
+                        <td style="background-color: darkgray;">{{ group.leaders }}</td>
+                        <td style="background-color: darkgray;">{{ group.hosts }}</td>
+                        <td style="background-color: darkgray;">{{ group.location }}</td>
+                        <td style="background-color: darkgray;">{{ group.day_of_week }}</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

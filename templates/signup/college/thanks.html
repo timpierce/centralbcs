@@ -1,0 +1,24 @@
+{% extends "signup/base.html" %}
+
+{% block head %}
+    {% if kiosk %}
+        <meta http-equiv="refresh" content="5; URL=/?ministry=college&kiosk={{ kiosk }}">
+    {% endif %}
+{% endblock %}
+{% block content %}
+    <div id="text">
+        <p>
+            {% if group %}
+                <strong>Thank You!</strong> We have you signed you up for the group lead by
+                <strong>{{ group.leaders }}</strong> that meets on <strong>{{ group.day_of_week }}</strong>
+                evenings. All groups meet at 6:30pm and begin meeting the week of {{ start_date }}.  You will receive a
+                confirmation email in the next 24 hours and you will be contacted by your group's leader or host before
+                the first meeting.
+            {% else %}
+                <strong>Thank You!</strong> Somebody from the Adult Education Department will contact you to find a
+                group
+                that meets your schedule before {{ start_date }}.
+            {% endif %}
+        </p>
+    </div>
+{% endblock %}

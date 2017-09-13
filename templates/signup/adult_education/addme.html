@@ -1,0 +1,110 @@
+{% extends "signup/base.html" %}
+{% load static from staticfiles %}
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/f2f_form.css' %}" media="screen"/>
+{% endblock %}
+{% block content %}
+    <div id="text">
+        <p>  {% if group %}
+            You are joining the group led by <strong>{{ group.leaders }}</strong> that meets on
+            <strong>{{ group.day_of_week }}</strong>
+            evenings. Please enter the information below to confirm your enrollment.
+        {% else %}
+            Please enter the information below so we can contact you regarding sign up.
+        {% endif %}
+        </p></div>
+    <div id="signup_form">
+        <table>
+            <tr>
+                <td style="vertical-align: top">
+                    <form method="post" action="">
+                        {% csrf_token %}
+                        {% if group %}
+                        {% else %}
+                            <div>
+                                <div id="form-error">{{ form.dow_first_choice.errors|striptags }}</div>
+                                Preferred Night to Meet: {{ form.dow_first_choice }}
+                            </div>
+                            <div>
+                                <div id="form-error">{{ form.dow_second_choice.errors|striptags }}</div>
+                                Second Choice: {{ form.dow_second_choice }}
+                            </div>
+                        {% endif %}
+                        <div>
+                            <div id="form-error">{{ form.first_name.errors|striptags }}</div>
+                            <div id="form-error">{{ form.last_name.errors|striptags }}</div>
+                            <input name="first_name" placeholder="First"
+                                   value={{ form.first_name.value | default_if_none:"" }}>&nbsp;<input name="last_name"
+                                                                                                       placeholder="Last"
+                                                                                                       value={{ form.last_name.value | default_if_none:"" }}>
+                        </div>
+                        <div>
+                            <div id="form-error">{{ form.dob.errors|striptags }}</div>
+                            <div id="form-error">{{ form.gender.errors|striptags }}</div>
+                            <input placeholder="Birthday mm/dd/yyyy" name="dob"
+                                   value={{ form.dob.value | default_if_none:"" }}>&nbsp;{{ form.gender }}
+                        </div>
+                        <div>
+                            <div id="form-error">{{ form.spouse_first_name.errors|striptags }}</div>
+                            <div id="form-error">{{ form.spouse_last_name.errors|striptags }}</div>
+                            <input name="spouse_first_name" placeholder="Spouse First Name"
+                                   value={{ form.spouse_first_name.value | default_if_none:"" }}>&nbsp;<input
+                                name="spouse_last_name" placeholder="Spouse Last Name"
+                                value={{ form.spouse_last_name.value | default_if_none:"" }}></div>
+                        <div>
+                            <div id="form-error">{{ form.spouse_dob.errors|striptags }}</div>
+                            <input placeholder="Spouse DOB mm/dd/yyyy" name="spouse_dob"
+                                   value={{ form.spouse_dob.value | default_if_none:"" }}>
+                        </div>
+                        <div>
+                            <div id="form-error">{{ form.spouse_email.errors|striptags }}</div>
+                            <input placeholder="Spouse Email" name="spouse_email"
+                                   value={{ form.spouse_email.value | default_if_none:"" }}>
+                        </div>
+                        <div>
+                            <div id="form-error">{{ form.address.errors|striptags }}</div>
+                            <input size="47" name="address" placeholder="Address"
+                                   value={{ form.address.value | default_if_none:"" }}></div>
+                        <div>
+                            <div id="form-error">{{ form.address2.errors|striptags }}</div>
+                            <input size="47" name="address2" placeholder="Address"
+                                   value={{ form.address2.value | default_if_none:"" }}></div>
+                        <div>
+                            <div id="form-error">{{ form.city.errors|striptags }}</div>
+                            <input size="47" name="city" placeholder="City"
+                                   value={{ form.city.value | default_if_none:"" }}></div>
+                        <div>
+                            <div id="form-error">{{ form.state.errors|striptags }}</div>
+                            <div id="form-error">{{ form.postal_code.errors|striptags }}</div>
+                            <input name="state" placeholder="State" value={{ form.state.value | default_if_none:"" }}>&nbsp<input
+                                placeholder="Zip" name="postal_code"
+                                value={{ form.postal_code.value | default_if_none:"" }}></div>
+                        <div>
+                            <div id="form-error">{{ form.phone.errors|striptags }}</div>
+                            <input name="phone" placeholder="Telephone"
+                                   value={{ form.phone.value | default_if_none:"" }}></div>
+                        <div>
+                            <div id="form-error">{{ form.email.errors|striptags }}</div>
+                            <input name="email" size="47" placeholder="Email"
+                                   value={{ form.email.value | default_if_none:"" }}></div>
+                        <div>
+                            <div id="form-error">{{ form.comments.errors|striptags }}</div>
+                            <textarea name="comments" placeholder="Comments"
+                                      value={{ form.comments.value | default_if_none:"" }}></textarea></div>
+                        <div>
+                            <input type="submit" value="Send Registration">&nbsp;<input value="Cancel" action="action"
+                                                                                        type="button"
+                                                                                        onclick="parent.location='/?kiosk={{ kiosk }}'"/>
+                        </div>
+
+                    </form>
+                </td>
+                <td style="vertical-align: text-top; text-align: center"><img style="padding: 40px;visibility:hidden"
+                                                                              src="/signup/static/images/face2face.jpg"/>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+
+{% endblock %}
