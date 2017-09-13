@@ -1,0 +1,8 @@
+version: 1
+cron:
+ - name: "import_children"
+   url: "/agist/import_children"
+   schedule: "0 */24 * * *"
+ - name: "process_birthdays"
+   url: "/agist/process_birthdays"
+   schedule: "0 */24 * * *"

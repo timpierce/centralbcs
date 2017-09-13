@@ -1,0 +1,23 @@
+branch-defaults:
+  awsdev:
+    environment: centralbcs-dev
+    group_suffix: null
+  master:
+    environment: centralbcs-green
+    group_suffix: null
+environment-defaults:
+  centralbcs-dev:
+    branch: null
+    repository: null
+  centralbcs-green:
+    branch: null
+    repository: null
+global:
+  application_name: centralbcs
+  branch: null
+  default_ec2_keyname: null
+  default_platform: python2.7
+  default_region: us-west-2
+  profile: eb-cli
+  repository: null
+  sc: git

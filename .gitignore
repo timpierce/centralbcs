@@ -1,8 +1,4 @@
-
-*.sqlite3
-
 # Elastic Beanstalk Files
-.elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 
@@ -62,7 +58,6 @@ coverage.xml
 
 # Django stuff:
 *.log
-local_settings.py
 
 # Flask stuff:
 instance/
@@ -99,4 +94,3 @@ ENV/
 
 # Rope project settings
 .ropeproject*
-.elasticbeanstalk/
