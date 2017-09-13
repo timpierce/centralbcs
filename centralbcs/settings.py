@@ -3,7 +3,7 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-DEBUG = True
+DEBUG = os.getenv('DJANGO_DEBUG')
 
 ADMINS = (
     ('Tim Pierce', 'timpierce.py@gmail.com'),
@@ -154,7 +154,16 @@ LOGGING = {
     'filters': {
         'require_debug_false': {
             '()': 'django.utils.log.RequireDebugFalse'
+        },
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue'
         }
+    },
+    'formatters': {
+        'simple': {
+            'format': '[%(asctime)s] %(levelname)s::%(name)s.%(funcName)s::%(message)s',
+            'datefmt': '%d/%b/%Y %H:%M:%S',
+        },
     },
     'handlers': {
         'mail_admins': {
@@ -164,6 +173,11 @@ LOGGING = {
         },
         'null': {
             'class': 'logging.NullHandler',
+        },
+        'console': {
+            'class': 'logging.StreamHandler',
+            'filters': ['require_debug_true'],
+            'formatter': 'simple',
         },
     },
     'loggers': {
@@ -176,8 +190,11 @@ LOGGING = {
             'handlers': ['null'],
             'propagate': False,
         },
+        'agist': {
+            'handlers': ['console'],
+            'level': os.getenv('DJANGO_DEBUG_LEVEL', 'INFO'),
+        },
     },
-
 }
 
 AUTH_PASSWORD_VALIDATORS = [

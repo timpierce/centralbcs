@@ -17,7 +17,7 @@ from requests import HTTPError
 
 from models import Child, BirthdayMessage
 
-logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 
 def get_person(indvid, retry=5):
@@ -30,7 +30,7 @@ def get_person(indvid, retry=5):
             r.raise_for_status()
             return r.json()
         except requests.ConnectionError, e:
-            logging.info(e)
+            logger.info(e)
     raise requests.ConnectionError("Max connection retries for get_person exceeded. Cannot connect to ACS for id: " + indvid)
 
 
@@ -42,17 +42,17 @@ def import_children(request):
     last_id = 0
     try:
         last_id = Child.objects.order_by('indvid').last().indvid
-        logging.info("AGIST: Last ID found in the database is: {}".format(last_id))
+        logger.info("Last ID found in the database is: {}".format(last_id))
     except AttributeError:
-        logging.info('There are no members in database.')
+        logger.warning('There are no members in database.')
 
     count_404 = 0
     for i in itertools.count(start=last_id + 1):
-        logging.info('Processing for import id: {}'.format(i))
+        logger.info('Processing for import id: {}'.format(i))
         try:
             person = get_person(i)
             count_404 = 0  # Reset 404 counter. If we find a record we try for ACS_MAX_HTTP_404 more people.
-            logging.info(person)
+            logger.info(person)
             if person['DateOfBirth']:
                 dob = datetime.strptime(person['DateOfBirth'], '%m/%d/%Y')
                 if relativedelta(datetime.today(), dob).years < 18:
@@ -66,9 +66,9 @@ def import_children(request):
                 if count_404 >= 50:
                     break
             else:
-                logging.warning(e)
+                logger.warning(e)
         except Exception, e:
-            logging.warning(e)
+            logger.warning(e)
     return HttpResponse(status=200)
 
 
@@ -80,11 +80,11 @@ def process_birthdays(request):
         person = get_person(child.indvid)
         if person['MemberStatus'] not in ['Former Member', 'Non-Resident Mem.']:
             birthdays.append(person)
-    logging.info('Found {} birthdays for today.'.format(len(birthdays)))
+    logger.info('Found {} birthdays for today.'.format(len(birthdays)))
 
     for child in birthdays:
         try:
-            logging.info('Processing birthday for ' + str(child['IndvId']))
+            logger.info('Processing birthday for ' + str(child['IndvId']))
             age = relativedelta(datetime.today(), datetime.strptime(child['DateOfBirth'], '%m/%d/%Y')).years
             message = BirthdayMessage.objects.get(pk=age)
             # Build Email Address List
@@ -101,7 +101,7 @@ def process_birthdays(request):
 
             # Send Email
             email_addresses = list(set(child['email_to']))
-            logging.info('Email will be sent to ' + str(email_addresses))
+            logger.info('Email will be sent to ' + str(email_addresses))
             email = EmailMessage(
                 Template(message.subject).substitute(child),
                 Template(message.content).substitute(child),
@@ -117,10 +117,11 @@ def process_birthdays(request):
                 attachment_file.close()
                 email.attach(message.attachment.name, attachment_content, 'application/pdf')
             email.send()
-            # TODO: throwing a TypeError when there is an incorrect key in template.
+        except KeyError, e:
+            logger.error('Cannot process {}. The field {} does not exist.'.format(child['IndvId'], e.message))
         except ObjectDoesNotExist:
-            logging.info(
-                'Agist: There is no message established for {} year olds. Skipping id: {}'.format(age, child['IndvId']))
+            logger.info(
+                'There is no message established for {} year olds. Skipping id: {}'.format(age, child['IndvId']))
         except requests.ConnectionError, e:
-            logging.info(e)
+            logger.info(e)
     return HttpResponse(status=200)
