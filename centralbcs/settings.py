@@ -12,6 +12,7 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+'''
 if 'RDS_DB_NAME' in os.environ:
     DATABASES = {
         'default': {
@@ -24,12 +25,13 @@ if 'RDS_DB_NAME' in os.environ:
         }
     }
 else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-            'NAME': 'centralbcs.sqlite3',  # Or path to database file if using sqlite3.
-        }
+'''
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'centralbcs.sqlite3',  # Or path to database file if using sqlite3.
     }
+}
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
