@@ -4,7 +4,6 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 DEBUG = True
-# DEBUG = os.getenv('DJANGO_DEBUG')
 
 ADMINS = (
     ('Tim Pierce', 'timpierce.py@gmail.com'),
@@ -12,7 +11,6 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-'''
 if 'RDS_DB_NAME' in os.environ:
     DATABASES = {
         'default': {
@@ -25,17 +23,16 @@ if 'RDS_DB_NAME' in os.environ:
         }
     }
 else:
-'''
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'centralbcs.sqlite3',  # Or path to database file if using sqlite3.
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+            'NAME': 'centralbcs.sqlite3',  # Or path to database file if using sqlite3.
+        }
     }
-}
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.elasticbeanstalk.com']
+ALLOWED_HOSTS = ['.elasticbeanstalk.com']
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
