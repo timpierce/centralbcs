@@ -111,11 +111,11 @@ def process_birthdays(request):
                 ['tim@pierce-fam.com']
             )
             email.content_subtype = 'html'
-            if message.attachment:
-                attachment_file = default_storage.open(message.attachment.name, 'rb')
-                attachment_content = attachment_file.read()
-                attachment_file.close()
-                email.attach(message.attachment.name, attachment_content, 'application/pdf')
+            # if message.attachment:
+            #    attachment_file = default_storage.open(message.attachment.name, 'rb')
+            #    attachment_content = attachment_file.read()
+            #    attachment_file.close()
+            #    email.attach(message.attachment.name, attachment_content, 'application/pdf')
             email.send()
         except KeyError, e:
             logger.error('Cannot process {}. The field {} does not exist.'.format(child['IndvId'], e.message))
