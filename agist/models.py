@@ -12,8 +12,8 @@ class Child(models.Model):
 class BirthdayMessage(models.Model):
     age = models.PositiveSmallIntegerField(primary_key=True)
     subject = models.CharField(max_length=255)
-    content = models.TextField(max_length=5000)
-    # attachment = models.FileField(blank=True, null=True)
+    content = models.TextField()
+    attachment = models.FileField(blank=True, null=True)
 
     def __unicode__(self):
         return "Age " + str(self.age)
