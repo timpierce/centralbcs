@@ -3,7 +3,8 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-DEBUG = os.getenv('DJANGO_DEBUG')
+DEBUG = False
+# DEBUG = os.getenv('DJANGO_DEBUG')
 
 ADMINS = (
     ('Tim Pierce', 'timpierce.py@gmail.com'),
