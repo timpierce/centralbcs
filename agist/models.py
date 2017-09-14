@@ -17,3 +17,9 @@ class BirthdayMessage(models.Model):
 
     def __unicode__(self):
         return "Age " + str(self.age)
+
+
+class ActivityLog(models.Model):
+    child = models.ForeignKey(Child)
+    message = models.ForeignKey(BirthdayMessage)
+    sent = models.DateTimeField(auto_now_add=True)

@@ -15,7 +15,7 @@ from django.core.mail.message import EmailMessage
 from django.http import HttpResponse
 from requests import HTTPError
 
-from models import Child, BirthdayMessage
+from models import Child, BirthdayMessage, ActivityLog
 
 logger = logging.getLogger(__name__)
 
@@ -87,36 +87,44 @@ def process_birthdays(request):
             logger.info('Processing birthday for ' + str(child['IndvId']))
             age = relativedelta(datetime.today(), datetime.strptime(child['DateOfBirth'], '%m/%d/%Y')).years
             message = BirthdayMessage.objects.get(pk=age)
-            # Build Email Address List
-            child['email_to'] = []
-            for family_member in child['FamilyMembers']:
-                if family_member['FamilyPosition'] in ['Head', 'Spouse']:
-                    parent = get_person(family_member['IndvId'])
-                    for email in parent['Emails']:
+            try:
+                ActivityLog.objects.get(message=message, child=child['IndvId'])
+                logger.warning('Email has already been sent for ' + str(child['IndvId']))
+            except ObjectDoesNotExist:
+                # Build Email Address List
+                child['email_to'] = []
+                for family_member in child['FamilyMembers']:
+                    if family_member['FamilyPosition'] in ['Head', 'Spouse']:
+                        parent = get_person(family_member['IndvId'])
+                        for email in parent['Emails']:
+                            child['email_to'].append(email['Email'])
+
+                if age >= settings.AGIST_MIN_CHILD_EMAIL_AGE:
+                    for email in child['Emails']:
                         child['email_to'].append(email['Email'])
 
-            if age >= settings.AGIST_MIN_CHILD_EMAIL_AGE:
-                for email in child['Emails']:
-                    child['email_to'].append(email['Email'])
-
-            # Send Email
-            email_addresses = list(set(child['email_to']))
-            logger.info('Email will be sent to ' + str(email_addresses))
-            email = EmailMessage(
-                Template(message.subject).substitute(child),
-                Template(message.content).substitute(child),
-                settings.AGIST_FROM_EMAIL,
-                # TODO: Use actual email addresses
-                # email_addresses,
-                ['tim@pierce-fam.com']
-            )
-            email.content_subtype = 'html'
-            if message.attachment:
-                attachment_file = default_storage.open(message.attachment.name, 'rb')
-                attachment_content = attachment_file.read()
-                attachment_file.close()
-                email.attach(message.attachment.name, attachment_content, 'application/pdf')
-            email.send()
+                # Send Email
+                email_addresses = list(set(child['email_to']))
+                logger.info('Email will be sent to ' + str(email_addresses))
+                email = EmailMessage(
+                    Template(message.subject).substitute(child),
+                    Template(message.content).substitute(child),
+                    settings.AGIST_FROM_EMAIL,
+                    # TODO: Use actual email addresses
+                    # email_addresses,
+                    ['tim@pierce-fam.com']
+                )
+                email.content_subtype = 'html'
+                if message.attachment:
+                    attachment_file = default_storage.open(message.attachment.name, 'rb')
+                    attachment_content = attachment_file.read()
+                    attachment_file.close()
+                    email.attach(message.attachment.name, attachment_content, 'application/pdf')
+                email.send()
+                activity_log = ActivityLog()
+                activity_log.child = Child.objects.get(pk=child['IndvId'])
+                activity_log.message = message
+                activity_log.save()
         except KeyError, e:
             logger.error('Cannot process {}. The field {} does not exist.'.format(child['IndvId'], e.message))
         except ObjectDoesNotExist:
