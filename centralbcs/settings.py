@@ -160,9 +160,12 @@ LOGGING = {
         }
     },
     'formatters': {
-        'simple': {
+        'verbose': {
             'format': '[%(asctime)s] %(levelname)s::%(name)s.%(funcName)s::%(message)s',
             'datefmt': '%d/%b/%Y %H:%M:%S',
+        },
+        'simple': {
+            'format': '%(levelname)s::%(funcName)s::%(message)s',
         },
     },
     'handlers': {

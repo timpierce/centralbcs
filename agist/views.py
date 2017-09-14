@@ -77,9 +77,13 @@ def process_birthdays(request):
     birthdays = []
     today = datetime.today()
     for child in Child.objects.filter(dob__month=today.month, dob__day=today.day):
-        person = get_person(child.indvid)
-        if person['MemberStatus'] not in ['Former Member', 'Non-Resident Mem.']:
-            birthdays.append(person)
+        try:
+            person = get_person(child.indvid)
+            if person['MemberStatus'] not in ['Former Member', 'Non-Resident Mem.']:
+                birthdays.append(person)
+        except HTTPError, e:
+            if e.response.status_code == 404:
+                logger.warning('The record for {} no longer exists in ACS.'.format(child.indvid))
     logger.info('Found {} birthdays for today.'.format(len(birthdays)))
 
     for child in birthdays:
@@ -90,7 +94,14 @@ def process_birthdays(request):
             try:
                 ActivityLog.objects.get(message=message, child=child['IndvId'])
                 logger.warning('Email has already been sent for ' + str(child['IndvId']))
+                message_received = True
+            except ActivityLog.MultipleObjectsReturned:
+                logger.warning('Email has already been sent multiple times for ' + str(child['IndvId']))
+                message_received = True
             except ObjectDoesNotExist:
+                message_received = False
+
+            if not message_received:
                 # Build Email Address List
                 child['email_to'] = []
                 for family_member in child['FamilyMembers']:
@@ -112,7 +123,7 @@ def process_birthdays(request):
                     settings.AGIST_FROM_EMAIL,
                     # TODO: Use actual email addresses
                     # email_addresses,
-                    ['tim@pierce-fam.com']
+                    ['tim@pierce-fam.com', 'jpierce@centralbcs.org']
                 )
                 email.content_subtype = 'html'
                 if message.attachment:
