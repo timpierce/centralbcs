@@ -1,0 +1,29 @@
+EnvironmentConfigurationMetadata:
+  Description: Configuration created from the EB CLI using "eb config save".
+  DateCreated: '1505494095000'
+  DateModified: '1505494095000'
+Platform:
+  PlatformArn: arn:aws:elasticbeanstalk:us-west-2::platform/Python 2.7 running on 64bit Amazon Linux/2.5.1
+OptionSettings:
+  aws:elasticbeanstalk:container:python:staticfiles:
+    /static/: static/
+  aws:elasticbeanstalk:application:environment:
+    DJANGO_SETTINGS_MODULE: centralbcs.settings
+    RDS_HOSTNAME: centralbcs.cqvvhphcqdbn.us-west-2.rds.amazonaws.com
+    RDS_PASSWORD: c0mpl3x!
+    AWS_SES_SECRET_ACCESS_KEY: gpeEdsNgRuRlzAPOOxs6TGCthgMtKqA5YevmigWz
+    RDS_PORT: '3306'
+    RDS_DB_NAME: centralbcs
+    AWS_SES_ACCESS_KEY_ID: AKIAJUIVGNN4VXOSSEKQ
+    RDS_USERNAME: cbcdb
+  aws:elasticbeanstalk:environment:
+    ServiceRole: aws-elasticbeanstalk-service-role
+    EnvironmentType: SingleInstance
+  aws:elasticbeanstalk:healthreporting:system:
+    SystemType: enhanced
+  aws:autoscaling:launchconfiguration:
+    IamInstanceProfile: aws-elasticbeanstalk-ec2-role
+EnvironmentTier:
+  Type: SQS/HTTP
+  Name: Worker
+AWSConfigurationTemplateVersion: 1.1.0.0
