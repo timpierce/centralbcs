@@ -12,7 +12,7 @@ environment-defaults:
   centralbcs-dev:
     branch: null
     repository: null
-  centralbcs-green:
+  centralbcs-agist-worker:
     branch: null
     repository: null
 global:
