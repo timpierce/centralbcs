@@ -13,6 +13,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage
 from django.core.mail.message import EmailMessage
 from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 from requests import HTTPError
 
 from models import Child, BirthdayMessage, ActivityLog
@@ -34,6 +35,7 @@ def get_person(indvid, retry=5):
     raise requests.ConnectionError("Max connection retries for get_person exceeded. Cannot connect to ACS for id: " + indvid)
 
 
+@csrf_exempt
 def import_children(request):
     """
     Imports children from the ACS system. It looks for the most recent ID in the database and counts up from there. If
@@ -72,6 +74,7 @@ def import_children(request):
     return HttpResponse(status=200)
 
 
+@csrf_exempt
 def process_birthdays(request):
     # Get list of birthdays
     birthdays = []
