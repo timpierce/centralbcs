@@ -3,16 +3,16 @@ branch-defaults:
     environment: centralbcs-dev
     group_suffix: null
   master:
-    environment: centralbcs
+    environment: agist-worker
     group_suffix: null
 environment-defaults:
   centralbcs:
     branch: null
     repository: null
-  centralbcs-dev:
+  centralbcs-agist-worker:
     branch: null
     repository: null
-  centralbcs-agist-worker:
+  centralbcs-dev:
     branch: null
     repository: null
 global:
