@@ -45,18 +45,6 @@
                                    value={{ form.dob.value | default_if_none:"" }}>&nbsp;{{ form.gender }}
                         </div>
                         <div>
-                            <div id="form-error">{{ form.spouse_first_name.errors|striptags }}</div>
-                            <div id="form-error">{{ form.spouse_last_name.errors|striptags }}</div>
-                            <input name="spouse_first_name" placeholder="Spouse First Name"
-                                   value={{ form.spouse_first_name.value | default_if_none:"" }}>&nbsp;<input
-                                name="spouse_last_name" placeholder="Spouse Last Name"
-                                value={{ form.spouse_last_name.value | default_if_none:"" }}></div>
-                        <div>
-                            <div id="form-error">{{ form.spouse_dob.errors|striptags }}</div>
-                            <input placeholder="Spouse DOB mm/dd/yyyy" name="spouse_dob"
-                                   value={{ form.spouse_dob.value | default_if_none:"" }}>
-                        </div>
-                        <div>
                             <div id="form-error">{{ form.address.errors|striptags }}</div>
                             <input size="47" name="address" placeholder="Address"
                                    value={{ form.address.value | default_if_none:"" }}></div>
@@ -82,15 +70,34 @@
                             <div id="form-error">{{ form.email.errors|striptags }}</div>
                             <input name="email" size="47" placeholder="Email"
                                    value={{ form.email.value | default_if_none:"" }}></div>
+                        <hr>
+                        <div>
+                            <div id="form-error">{{ form.spouse_first_name.errors|striptags }}</div>
+                            <div id="form-error">{{ form.spouse_last_name.errors|striptags }}</div>
+                            <input name="spouse_first_name" placeholder="Spouse First Name"
+                                   value={{ form.spouse_first_name.value | default_if_none:"" }}>&nbsp;<input
+                                name="spouse_last_name" placeholder="Spouse Last Name"
+                                value={{ form.spouse_last_name.value | default_if_none:"" }}></div>
+                        <div>
+                            <div id="form-error">{{ form.spouse_dob.errors|striptags }}</div>
+                            <input placeholder="Spouse DOB mm/dd/yyyy" name="spouse_dob"
+                                   value={{ form.spouse_dob.value | default_if_none:"" }}>
+                        </div>
                         <div>
                             <div id="form-error">{{ form.spouse_email.errors|striptags }}</div>
                             <input size="47" placeholder="Spouse Email" name="spouse_email"
                                    value={{ form.spouse_email.value | default_if_none:"" }}>
                         </div>
                         <div>
+                            <div id="form-error">{{ form.spouse_phone.errors|striptags }}</div>
+                            <input name="spouse_phone" placeholder="Spouse Phone"
+                                   value={{ form.spouse_phone.value | default_if_none:"" }}></div>
+                        <hr>
+                        <div>
                             <div id="form-error">{{ form.comments.errors|striptags }}</div>
                             <textarea name="comments" placeholder="Comments"
                                       value={{ form.comments.value | default_if_none:"" }}></textarea></div>
+                        <br><br>
                         <div>
                             <input type="submit" value="Send Registration">&nbsp;<input value="Cancel" action="action"
                                                                                         type="button"

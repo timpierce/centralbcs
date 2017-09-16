@@ -73,10 +73,6 @@
                             <input name="phone" placeholder="Phone"
                                    value={{ form.phone.value | default_if_none:"" }}></div>
                         <div>
-                            <div id="form-error">{{ form.spouse_phone.errors|striptags }}</div>
-                            <input name="spouse_phone" placeholder="Spouse Phone"
-                                   value={{ form.spouse_phone.value | default_if_none:"" }}></div>
-                        <div>
                             <div id="form-error">{{ form.email.errors|striptags }}</div>
                             <input name="email" size="47" placeholder="Email"
                                    value={{ form.email.value | default_if_none:"" }}></div>
