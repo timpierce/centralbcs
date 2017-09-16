@@ -1,0 +1,1 @@
+default_app_config = 'f2fsignup.apps.F2FSignupConfig'

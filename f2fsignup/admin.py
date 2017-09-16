@@ -46,8 +46,8 @@ class F2FSettingsAdmin(admin.ModelAdmin):
     list_display = ['start_date']
 
 
-admin.site.site_header = 'F2F Administration'
-admin.site.site_title = 'F2F Admin'
+admin.site.site_header = 'Central Baptist Church'
+admin.site.site_title = 'Central Baptist Church'
 
 admin.site.register(Group, GroupAdmin)
 admin.site.register(Member, MemberAdmin)

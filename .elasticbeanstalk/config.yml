@@ -3,7 +3,7 @@ branch-defaults:
     environment: centralbcs-dev
     group_suffix: null
   master:
-    environment: agist-worker
+    environment: centralbcs
     group_suffix: null
 environment-defaults:
   centralbcs:
@@ -12,7 +12,7 @@ environment-defaults:
   centralbcs-agist-worker:
     branch: null
     repository: null
-  centralbcs-dev:
+  f2f-prod:
     branch: null
     repository: null
 global:

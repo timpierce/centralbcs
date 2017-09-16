@@ -140,7 +140,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'storages',
-    'agist'
+    'agist',
+    'f2fsignup',
 ]
 
 # A sample logging configuration. The only tangible logging
