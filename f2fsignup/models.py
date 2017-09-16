@@ -137,6 +137,6 @@ class Member(models.Model):
             message = EmailMessage()
             message.to = [self.email]
             message.from_email = settings.STAFF_NOTIFICATION_EMAIL
-            message.content = Template(email_text).substitute(email_parms)
+            message.body = Template(email_text).substitute(email_parms)
             message.subject = 'Face to Face Group Information'
             message.send(fail_silently=True)
