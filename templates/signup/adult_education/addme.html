@@ -57,11 +57,6 @@
                                    value={{ form.spouse_dob.value | default_if_none:"" }}>
                         </div>
                         <div>
-                            <div id="form-error">{{ form.spouse_email.errors|striptags }}</div>
-                            <input placeholder="Spouse Email" name="spouse_email"
-                                   value={{ form.spouse_email.value | default_if_none:"" }}>
-                        </div>
-                        <div>
                             <div id="form-error">{{ form.address.errors|striptags }}</div>
                             <input size="47" name="address" placeholder="Address"
                                    value={{ form.address.value | default_if_none:"" }}></div>
@@ -87,6 +82,11 @@
                             <div id="form-error">{{ form.email.errors|striptags }}</div>
                             <input name="email" size="47" placeholder="Email"
                                    value={{ form.email.value | default_if_none:"" }}></div>
+                        <div>
+                            <div id="form-error">{{ form.spouse_email.errors|striptags }}</div>
+                            <input size="47" placeholder="Spouse's Email" name="spouse_email"
+                                   value={{ form.spouse_email.value | default_if_none:"" }}>
+                        </div>
                         <div>
                             <div id="form-error">{{ form.comments.errors|striptags }}</div>
                             <textarea name="comments" placeholder="Comments"
