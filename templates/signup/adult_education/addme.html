@@ -47,13 +47,13 @@
                         <div>
                             <div id="form-error">{{ form.spouse_first_name.errors|striptags }}</div>
                             <div id="form-error">{{ form.spouse_last_name.errors|striptags }}</div>
-                            <input name="spouse_first_name" placeholder="Spouse's First Name"
+                            <input name="spouse_first_name" placeholder="Spouse First Name"
                                    value={{ form.spouse_first_name.value | default_if_none:"" }}>&nbsp;<input
-                                name="spouse_last_name" placeholder="Spouse's Last Name"
+                                name="spouse_last_name" placeholder="Spouse Last Name"
                                 value={{ form.spouse_last_name.value | default_if_none:"" }}></div>
                         <div>
                             <div id="form-error">{{ form.spouse_dob.errors|striptags }}</div>
-                            <input placeholder="Spouse's DOB mm/dd/yyyy" name="spouse_dob"
+                            <input placeholder="Spouse DOB mm/dd/yyyy" name="spouse_dob"
                                    value={{ form.spouse_dob.value | default_if_none:"" }}>
                         </div>
                         <div>
@@ -84,7 +84,7 @@
                                    value={{ form.email.value | default_if_none:"" }}></div>
                         <div>
                             <div id="form-error">{{ form.spouse_email.errors|striptags }}</div>
-                            <input size="47" placeholder="Spouse's Email" name="spouse_email"
+                            <input size="47" placeholder="Spouse Email" name="spouse_email"
                                    value={{ form.spouse_email.value | default_if_none:"" }}>
                         </div>
                         <div>
