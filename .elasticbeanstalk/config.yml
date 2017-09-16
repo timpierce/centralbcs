@@ -3,22 +3,22 @@ branch-defaults:
     environment: centralbcs-dev
     group_suffix: null
   master:
-    environment: centralbcs
+    environment: f2f-prod
     group_suffix: null
 environment-defaults:
   centralbcs:
     branch: null
     repository: null
-  centralbcs-agist-worker:
+  agist-worker:
     branch: null
     repository: null
   f2f-prod:
     branch: null
     repository: null
 global:
-  application_name: centralbcs
+  application_name: f2f
   branch: null
-  default_ec2_keyname: null
+  default_ec2_keyname: aws-eb
   default_platform: python2.7
   default_region: us-west-2
   include_git_submodules: true
