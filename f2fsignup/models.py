@@ -76,6 +76,7 @@ class Member(models.Model):
     spouse_last_name = models.CharField(max_length=100, null=True, blank=True)
     spouse_dob = models.DateField(null=True, blank=True)
     spouse_email = models.EmailField(null=True, blank=True)
+    spouse_phone = models.CharField(max_length=20, null=True, blank=True)
     gender = models.CharField(max_length=1)  # M or F
     dob = models.DateField()  # 1/1/80
     email = models.EmailField()  # student@tamu.edu
@@ -107,6 +108,7 @@ class Member(models.Model):
             spouse.first_name = spouse.spouse_first_name.capitalize()
             spouse.last_name = spouse.spouse_last_name.capitalize()
             spouse.dob = spouse.spouse_dob
+            spouse.phone = spouse.spouse_phone
             if self.gender == 'M':
                 spouse.gender = 'F'
             else:
@@ -116,6 +118,7 @@ class Member(models.Model):
             spouse.spouse_last_name = None
             spouse.spouse_dob = None
             spouse.spouse_email = None
+            spouse.spouse_phone = None
             spouse.save()
         if self.group:  # a group is assigned
             if self.pk:  # on update

@@ -70,8 +70,12 @@
                                 value={{ form.postal_code.value | default_if_none:"" }}></div>
                         <div>
                             <div id="form-error">{{ form.phone.errors|striptags }}</div>
-                            <input name="phone" placeholder="Telephone"
+                            <input name="phone" placeholder="Phone"
                                    value={{ form.phone.value | default_if_none:"" }}></div>
+                        <div>
+                            <div id="form-error">{{ form.spouse_phone.errors|striptags }}</div>
+                            <input name="phone" placeholder="Spouse Phone"
+                                   value={{ form.spouse_phone.value | default_if_none:"" }}></div>
                         <div>
                             <div id="form-error">{{ form.email.errors|striptags }}</div>
                             <input name="email" size="47" placeholder="Email"
