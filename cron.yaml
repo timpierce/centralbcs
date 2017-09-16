@@ -2,7 +2,7 @@ version: 1
 cron:
  - name: "import_children"
    url: "/agist/import_children/"
-   schedule: "0 4 * * *"
+   schedule: "30 14 * * *"
  - name: "process_birthdays"
    url: "/agist/process_birthdays/"
-   schedule: "15 4 * * *"
+   schedule: "35 14 * * *"
