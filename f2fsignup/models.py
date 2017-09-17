@@ -1,5 +1,4 @@
 import os
-from copy import deepcopy
 from string import Template
 
 from django.conf import settings
@@ -7,7 +6,8 @@ from django.core.files import File
 from django.core.mail.message import EmailMessage
 from django.db import models
 from django.forms.models import model_to_dict
-from django.utils.dateformat import DateFormat
+from django.utils.dateformat import format
+from datetime import datetime
 
 dow_choices = (('Sunday', 'Sunday'),
                ('Monday', 'Monday'),
@@ -28,12 +28,23 @@ class ImportFile(models.Model):
         return self.data_file.name
 
 
-# This is not the best way to do this at all
-class F2FSettings(models.Model):
-    start_date = models.DateField()
+class Ministry(models.Model):
+    name = models.CharField(max_length=255)
+    limit = models.PositiveSmallIntegerField()
 
     def __unicode__(self):
-        return 'Start Date'
+        return self.name
+
+    class Meta:
+        verbose_name_plural = 'ministries'
+
+
+class F2FSettings(models.Model):
+    attribute = models.CharField(max_length=255)
+    value = models.CharField(max_length=255)
+
+    def __unicode__(self):
+        return self.attribute
 
     class Meta:
         verbose_name = "F2F Setting"
@@ -57,7 +68,8 @@ class Group(models.Model):
         return self.name
 
     def has_openings(self, ministry):
-        return self.member_set.filter(ministry=ministry).count() < settings.NUMBER_OF_MEMBERS[ministry]
+        ministry = Ministry.objects.get(name=ministry)
+        return self.member_set.filter(ministry=ministry).count() < ministry.limit
 
     def registrant_count(self):
         return self.member_set.count()
@@ -65,7 +77,7 @@ class Group(models.Model):
 
 class Member(models.Model):
     group = models.ForeignKey('Group', null=True, blank=True)  # 1
-    ministry = models.CharField(default="adult_education", max_length=20)  # adult_education
+    ministry = models.ForeignKey('Ministry')  # adult_education
     student_class = models.CharField(max_length=100, choices=student_class_choices, null=True, blank=True)  # Senior
     first_name = models.CharField(max_length=20)  # Sally
     last_name = models.CharField(max_length=20)  # Student
@@ -106,9 +118,10 @@ class Member(models.Model):
 
         """ Send email notification to member if they have been assigned to a new group """
         if new_group_member and send_email and self.send_member_email:
-            with (open(os.path.join(settings.BASE_DIR, 'templates/signup/email/member.eml'), 'rb')) as f:
+            with (open(os.path.join(settings.BASE_DIR, 'templates/f2fsignup/email/member.eml'), 'rb')) as f:
                 email_text = File(f).read()
-            start_date_text = DateFormat(F2FSettings.objects.all()[0].start_date).format('F jS')
+            start_date = F2FSettings.objects.get(attribute='start_date').value
+            start_date_text = format(datetime.strptime(start_date, '%m/%d/%Y'), 'F jS')
             email_parms = model_to_dict(self.group)
             email_parms['first_name'] = self.first_name
             email_parms['start_date'] = start_date_text

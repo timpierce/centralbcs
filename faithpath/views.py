@@ -113,7 +113,7 @@ def process_birthdays(request):
                         for email in parent['Emails']:
                             child['email_to'].append(email['Email'])
 
-                if age >= settings.AGIST_MIN_CHILD_EMAIL_AGE:
+                if age >= settings.FAITH_PATH_MIN_CHILD_EMAIL_AGE:
                     for email in child['Emails']:
                         child['email_to'].append(email['Email'])
 
@@ -123,7 +123,7 @@ def process_birthdays(request):
                 email = EmailMessage(
                     Template(message.subject).substitute(child),
                     Template(message.content).substitute(child),
-                    settings.AGIST_FROM_EMAIL,
+                    settings.FAITH_PATH_FROM_EMAIL,
                     # TODO: Use actual email addresses
                     # email_addresses,
                     ['tim@pierce-fam.com', 'jpierce@centralbcs.org']

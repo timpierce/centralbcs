@@ -6,6 +6,6 @@ admin.autodiscover()
 
 urlpatterns = [
     url(r'^', include('f2fsignup.urls')),
-    url(r'^agist/', include('agist.urls')),
+    url(r'^faithpath/', include('faithpath.urls')),
     url(r'^admin/', include(admin.site.urls)),
 ]

@@ -140,7 +140,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'storages',
-    'agist',
+    'faithpath',
     'f2fsignup',
 ]
 
@@ -194,7 +194,7 @@ LOGGING = {
             'handlers': ['null'],
             'propagate': False,
         },
-        'agist': {
+        'faithpath': {
             'handlers': ['console'],
             'level': os.getenv('DJANGO_DEBUG_LEVEL', 'INFO'),
             'propagate': False,

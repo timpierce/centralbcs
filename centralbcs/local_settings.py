@@ -3,6 +3,7 @@ import os
 ####################
 # AWS SES SETTINGS #
 ####################
+#  todo: set up Amazon user for SES, S3 and AWS Access
 SERVER_EMAIL = 'timpierce.py@gmail.com'
 EMAIL_BACKEND = 'django_ses.SESBackend'
 AWS_SES_ACCESS_KEY_ID = os.environ.get('AWS_SES_ACCESS_KEY_ID')
@@ -31,18 +32,15 @@ ACS_USER = 'jpierce'
 ACS_PASS = 'mshmother3'
 
 
-##################
-# Agist Settings #
-##################
-AGIST_FROM_EMAIL = 'smallgroups@centralbcs.org'
-AGIST_MIN_CHILD_EMAIL_AGE = 16
+#######################
+# Faith Path Settings #
+#######################
+FAITH_PATH_FROM_EMAIL = 'smallgroups@centralbcs.org'
+FAITH_PATH_MIN_CHILD_EMAIL_AGE = 16
 
 ###############################
 # Face 2 Face Signup Settings #
 ###############################
-# Number of total members that can automatically sign up for a group before it closes.
-NUMBER_OF_MEMBERS = {'adult_education': 16, 'college': 10}
-
 # Email addresses to send a notification to once the GROUP_SIGNUP_ACTIVE flag is False.
 STAFF_NOTIFICATION_EMAIL = 'smallgroups@centralbcs.org'
 

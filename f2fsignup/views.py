@@ -3,13 +3,13 @@ from django.shortcuts import render, get_object_or_404, get_list_or_404
 from django.utils.dateformat import DateFormat
 
 from forms import SignupForm
-from models import Group, F2FSettings
+from models import Group, F2FSettings, Ministry
 
 
 def list(request):
     ministry = request.GET.get('ministry', 'adult_education')
     kiosk = request.GET.get('kiosk', False)
-    return render(request, 'signup/%s/list.html' % ministry, {'groups': get_list_or_404(Group), 'kiosk': kiosk})
+    return render(request, 'f2fsignup/%s/list.html' % ministry, {'groups': get_list_or_404(Group), 'kiosk': kiosk})
 
 
 def addme(request, groupid):
@@ -22,7 +22,7 @@ def addme(request, groupid):
         form = SignupForm(request.POST)  # A form bound to the POST data
         if form.is_valid():  # All validation rules pass
             member = form.save(commit=False)
-            member.ministry = ministry
+            member.ministry = Ministry.objects.get(name=ministry)
             member.group = group
             member.save()
             if form.cleaned_data['spouse_first_name']:
@@ -38,11 +38,8 @@ def addme(request, groupid):
                 spouse.phone = form.cleaned_data['spouse_phone']
                 spouse.email = form.cleaned_data['spouse_email']
                 spouse.save()
-            start_date_text = DateFormat(F2FSettings.objects.all()[0].start_date).format('F jS')
-            template_parms = dict(kiosk=kiosk, start_date=start_date_text)
-            template_parms['group'] = group
-            template_parms['start_date'] = start_date_text
-            return render(request, 'signup/%s/thanks.html' % ministry, template_parms)  # Redirect after POST
+            template_parms = dict(kiosk=kiosk, group=group)
+            return render(request, 'f2fsignup/%s/thanks.html' % ministry, template_parms)  # Redirect after POST
     else:
         form = SignupForm()
-    return render(request, 'signup/%s/addme.html' % ministry, dict(form=form, group=group, kiosk=kiosk))
+    return render(request, 'f2fsignup/%s/addme.html' % ministry, dict(form=form, group=group, kiosk=kiosk))

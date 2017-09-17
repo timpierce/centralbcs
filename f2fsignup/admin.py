@@ -6,7 +6,7 @@ from django.contrib import admin
 from django.forms.models import model_to_dict
 from django.http import HttpResponse
 
-from models import Group, Member, F2FSettings, ImportFile
+from models import Group, Member, F2FSettings, ImportFile, Ministry
 
 
 def export_members_action(modeladmin, request, queryset):
@@ -43,7 +43,11 @@ class MemberAdmin(admin.ModelAdmin):
 
 
 class F2FSettingsAdmin(admin.ModelAdmin):
-    list_display = ['start_date']
+    list_display = ['attribute', 'value']
+
+
+class MinistryAdmin(admin.ModelAdmin):
+    list_display = ['name', 'limit']
 
 
 admin.site.site_header = 'Central Baptist Church'
@@ -51,5 +55,6 @@ admin.site.site_title = 'Central Baptist Church'
 
 admin.site.register(Group, GroupAdmin)
 admin.site.register(Member, MemberAdmin)
-admin.site.register(F2FSettings)
+admin.site.register(F2FSettings, F2FSettingsAdmin)
+admin.site.register(Ministry, MinistryAdmin)
 admin.site.register(ImportFile)

@@ -1,22 +1,24 @@
-{% extends "signup/base.html" %}
+{% extends "f2fsignup/base.html" %}
 {% load static from staticfiles %}
 {% block head %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/f2f_form.css' %}" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/f2f_form.css' %}"/>
 {% endblock %}
 {% block content %}
     <div id="text">
-        <p>  {% if group %}
-            You are joining the group led by <strong>{{ group.leaders }}</strong> that meets on
-            <strong>{{ group.day_of_week }}</strong>
-            evenings. Please enter the information below to confirm your enrollment.
-        {% else %}
-            Please enter the information below so we can contact you regarding sign up.
-        {% endif %}
-        </p></div>
+        <p>
+            {% if group %}
+                You are joining the group led by <strong>{{ group.leaders }}</strong> that meets on
+                <strong>{{ group.day_of_week }}</strong>
+                evenings. Please enter the information below to confirm your enrollment.
+            {% else %}
+                Please enter the information below so we can contact you regarding sign up.
+            {% endif %}
+        </p>
+    </div>
     <div id="signup_form">
         <table>
             <tr>
-                <td style="vertical-align: top">
+                <td>
                     <form method="post" action="">
                         {% csrf_token %}
                         {% if group %}
@@ -45,6 +47,10 @@
                                    value={{ form.dob.value | default_if_none:"" }}>&nbsp;{{ form.gender }}
                         </div>
                         <div>
+                            <div id="form-error">{{ form.student_class.errors|striptags }}</div>
+                            Student Classification: {{ form.student_class }}
+                        </div>
+                        <div>
                             <div id="form-error">{{ form.address.errors|striptags }}</div>
                             <input size="47" name="address" placeholder="Address"
                                    value={{ form.address.value | default_if_none:"" }}></div>
@@ -64,49 +70,25 @@
                                 value={{ form.postal_code.value | default_if_none:"" }}></div>
                         <div>
                             <div id="form-error">{{ form.phone.errors|striptags }}</div>
-                            <input name="phone" placeholder="Telephone"
+                            <input name="phone" placeholder="Phone"
                                    value={{ form.phone.value | default_if_none:"" }}></div>
                         <div>
                             <div id="form-error">{{ form.email.errors|striptags }}</div>
                             <input name="email" size="47" placeholder="Email"
                                    value={{ form.email.value | default_if_none:"" }}></div>
-                        <hr>
-                        <div>
-                            <div id="form-error">{{ form.spouse_first_name.errors|striptags }}</div>
-                            <div id="form-error">{{ form.spouse_last_name.errors|striptags }}</div>
-                            <input name="spouse_first_name" placeholder="Spouse First Name"
-                                   value={{ form.spouse_first_name.value | default_if_none:"" }}>&nbsp;<input
-                                name="spouse_last_name" placeholder="Spouse Last Name"
-                                value={{ form.spouse_last_name.value | default_if_none:"" }}></div>
-                        <div>
-                            <div id="form-error">{{ form.spouse_dob.errors|striptags }}</div>
-                            <input placeholder="Spouse DOB mm/dd/yyyy" name="spouse_dob"
-                                   value={{ form.spouse_dob.value | default_if_none:"" }}>
-                        </div>
-                        <div>
-                            <div id="form-error">{{ form.spouse_phone.errors|striptags }}</div>
-                            <input name="spouse_phone" placeholder="Spouse Phone"
-                                   value={{ form.spouse_phone.value | default_if_none:"" }}></div>
-                        <hr>
-                        <div>
-                            <div id="form-error">{{ form.spouse_email.errors|striptags }}</div>
-                            <input size="47" placeholder="Spouse Email" name="spouse_email"
-                                   value={{ form.spouse_email.value | default_if_none:"" }}>
-                        </div>
-
                         <div>
                             <div id="form-error">{{ form.comments.errors|striptags }}</div>
                             <textarea name="comments" placeholder="Comments"
                                       value={{ form.comments.value | default_if_none:"" }}></textarea></div>
-                        <br><br>
                         <div>
                             <input type="submit" value="Send Registration">&nbsp;<input value="Cancel" action="action"
                                                                                         type="button"
-                                                                                        onclick="parent.location='/?kiosk={{ kiosk }}'"/>
+                                                                                        onclick="parent.location='/?ministry=college&kiosk={{ kiosk }}'"/>
                         </div>
+
                     </form>
                 </td>
-                <td style="vertical-align: text-top; text-align: center"><img style="padding: 40px;visibility:hidden"
+                <td style="vertical-align: text-top; text-align: center"><img style="padding: 40px;display:none"
                                                                               src="/signup/static/images/face2face.jpg"/>
                 </td>
             </tr>

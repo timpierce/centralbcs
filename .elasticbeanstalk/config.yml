@@ -12,6 +12,8 @@ environment-defaults:
   agist-worker:
     branch: null
     repository: null
+  centralbcs-dev:
+    branch: null
 global:
   application_name: centralbcs
   branch: null
