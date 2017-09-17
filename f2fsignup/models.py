@@ -71,12 +71,6 @@ class Member(models.Model):
     student_class = models.CharField(max_length=100, choices=student_class_choices, null=True, blank=True)  # Senior
     first_name = models.CharField(max_length=20)  # Sally
     last_name = models.CharField(max_length=20)  # Student
-    # Spouse Fields
-    spouse_first_name = models.CharField(max_length=100, null=True, blank=True)
-    spouse_last_name = models.CharField(max_length=100, null=True, blank=True)
-    spouse_dob = models.DateField(null=True, blank=True)
-    spouse_email = models.EmailField(null=True, blank=True)
-    spouse_phone = models.CharField(max_length=20, null=True, blank=True)
     gender = models.CharField(max_length=1)  # M or F
     dob = models.DateField()  # 1/1/80
     email = models.EmailField()  # student@tamu.edu
@@ -103,23 +97,6 @@ class Member(models.Model):
         self.first_name = self.first_name.capitalize()
         self.last_name = self.last_name.capitalize()
         new_group_member = False
-        if self.spouse_first_name:
-            spouse = deepcopy(self)
-            spouse.first_name = spouse.spouse_first_name.capitalize()
-            spouse.last_name = spouse.spouse_last_name.capitalize()
-            spouse.dob = spouse.spouse_dob
-            spouse.phone = spouse.spouse_phone
-            if self.gender == 'M':
-                spouse.gender = 'F'
-            else:
-                spouse.gender = 'M'
-            spouse.email = spouse.spouse_email
-            spouse.spouse_first_name = None
-            spouse.spouse_last_name = None
-            spouse.spouse_dob = None
-            spouse.spouse_email = None
-            spouse.spouse_phone = None
-            spouse.save()
         if self.group:  # a group is assigned
             if self.pk:  # on update
                 old_obj = Member.objects.get(pk=self.pk)

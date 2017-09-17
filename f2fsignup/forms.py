@@ -10,18 +10,19 @@ class SignupForm(forms.ModelForm):
     last_name = forms.CharField(error_messages={'required': 'Your last name is missing.'})
     gender = forms.ChoiceField(choices=(('M', 'Male'), ('F', 'Female')))
     dob = forms.DateField(error_messages={'required': 'Your birthday is missing.'}, input_formats=DOB_FORMATS)
-    spouse_dob = forms.DateField(required=False, input_formats=DOB_FORMATS)
     address = forms.CharField(error_messages={'required': 'Your address is missing.'})
     city = forms.CharField(error_messages=dict(required='Your city is missing.'))
     state = forms.CharField(error_messages=dict(required='Your state is missing.'))
     postal_code = forms.CharField(error_messages=dict(required='Your zip code is missing.'))
     phone = forms.CharField(error_messages=dict(required='Your phone number is missing'))
     email = forms.CharField(error_messages=dict(required='Your email is missing.'))
+    spouse_first_name = forms.CharField(required=False)
+    spouse_last_name = forms.CharField(required=False)
+    spouse_dob = forms.DateField(required=False, input_formats=DOB_FORMATS)
     spouse_email = forms.CharField(required=False)
     spouse_phone = forms.CharField(required=False)
 
     class Meta:
         model = Member
         fields = ['first_name', 'last_name', 'gender', 'dob', 'email', 'phone', 'address', 'address2', 'city', 'state',
-                  'postal_code', 'comments', 'student_class', 'dow_first_choice', 'dow_second_choice',
-                  'spouse_first_name', 'spouse_last_name', 'spouse_dob', 'spouse_email', 'spouse_phone']
+                  'postal_code', 'comments', 'student_class', 'dow_first_choice', 'dow_second_choice',]
