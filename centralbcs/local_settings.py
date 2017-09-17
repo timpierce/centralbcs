@@ -46,12 +46,6 @@ NUMBER_OF_MEMBERS = {'adult_education': 16, 'college': 10}
 # Email addresses to send a notification to once the GROUP_SIGNUP_ACTIVE flag is False.
 STAFF_NOTIFICATION_EMAIL = 'smallgroups@centralbcs.org'
 
-# Whether the list display is available to choose a group to join. If True then the list is available and user can
-# choose their own group. If False then the list is not available and user will be presented with a form that they can
-# fill in. Staff will find a group for them out of band and the notification email will be sent to the staff, however a
-# notification email will not be sent to the user.
-GROUP_SIGNUP_ACTIVE = True
-
 # Export Fields
 EXPORT_FIELDS = ['id','group', 'ministry', 'student_class', 'first_name', 'last_name', 'gender', 'dob',
                  'phone', 'email', 'address', 'address2', 'city', 'state', 'postal_code', 'comments']

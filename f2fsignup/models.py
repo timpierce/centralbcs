@@ -66,8 +66,6 @@ class Group(models.Model):
 class Member(models.Model):
     group = models.ForeignKey('Group', null=True, blank=True)  # 1
     ministry = models.CharField(default="adult_education", max_length=20)  # adult_education
-    dow_first_choice = models.CharField(max_length=100, choices=dow_choices, null=True, blank=True)  # Tuesday
-    dow_second_choice = models.CharField(max_length=100, choices=dow_choices, null=True, blank=True)  # Thursday
     student_class = models.CharField(max_length=100, choices=student_class_choices, null=True, blank=True)  # Senior
     first_name = models.CharField(max_length=20)  # Sally
     last_name = models.CharField(max_length=20)  # Student

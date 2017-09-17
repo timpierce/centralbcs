@@ -25,4 +25,4 @@ class SignupForm(forms.ModelForm):
     class Meta:
         model = Member
         fields = ['first_name', 'last_name', 'gender', 'dob', 'email', 'phone', 'address', 'address2', 'city', 'state',
-                  'postal_code', 'comments', 'student_class', 'dow_first_choice', 'dow_second_choice',]
+                  'postal_code', 'comments', 'student_class',]

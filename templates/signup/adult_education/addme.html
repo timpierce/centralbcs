@@ -84,15 +84,16 @@
                                    value={{ form.spouse_dob.value | default_if_none:"" }}>
                         </div>
                         <div>
-                            <div id="form-error">{{ form.spouse_email.errors|striptags }}</div>
-                            <input size="47" placeholder="Spouse Email" name="spouse_email"
-                                   value={{ form.spouse_email.value | default_if_none:"" }}>
-                        </div>
-                        <div>
                             <div id="form-error">{{ form.spouse_phone.errors|striptags }}</div>
                             <input name="spouse_phone" placeholder="Spouse Phone"
                                    value={{ form.spouse_phone.value | default_if_none:"" }}></div>
                         <hr>
+                        <div>
+                            <div id="form-error">{{ form.spouse_email.errors|striptags }}</div>
+                            <input size="47" placeholder="Spouse Email" name="spouse_email"
+                                   value={{ form.spouse_email.value | default_if_none:"" }}>
+                        </div>
+
                         <div>
                             <div id="form-error">{{ form.comments.errors|striptags }}</div>
                             <textarea name="comments" placeholder="Comments"
@@ -103,7 +104,6 @@
                                                                                         type="button"
                                                                                         onclick="parent.location='/?kiosk={{ kiosk }}'"/>
                         </div>
-
                     </form>
                 </td>
                 <td style="vertical-align: text-top; text-align: center"><img style="padding: 40px;visibility:hidden"

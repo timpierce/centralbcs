@@ -1,14 +1,9 @@
 from copy import deepcopy
-
-from django.conf import settings
-from django.core.files import File
-from django.core.mail import send_mail
-from django.forms.models import model_to_dict
 from django.shortcuts import render, get_object_or_404, get_list_or_404
 from django.utils.dateformat import DateFormat
 
 from forms import SignupForm
-from models import Group, F2FSettings, Member
+from models import Group, F2FSettings
 
 
 def list(request):
