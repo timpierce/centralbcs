@@ -1,9 +1,9 @@
 branch-defaults:
-  awsdev:
+  acs:
     environment: centralbcs-dev
     group_suffix: null
   master:
-    environment: f2f-prod
+    environment: centralbcs
     group_suffix: null
 environment-defaults:
   centralbcs:
@@ -12,11 +12,8 @@ environment-defaults:
   agist-worker:
     branch: null
     repository: null
-  f2f-prod:
-    branch: null
-    repository: null
 global:
-  application_name: f2f
+  application_name: centralbcs
   branch: null
   default_ec2_keyname: aws-eb
   default_platform: python2.7
