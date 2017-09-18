@@ -1,11 +1,11 @@
 import os
 
+SERVER_EMAIL = 'timpierce.py@gmail.com'
+EMAIL_BACKEND = 'django_ses.SESBackend'
 
 ################
 # AWS SETTINGS #
 ################
-SERVER_EMAIL = 'timpierce.py@gmail.com'
-EMAIL_BACKEND = 'django_ses.SESBackend'
 AWS_SES_REGION_NAME = 'us-west-2'
 AWS_SES_REGION_ENDPOINT = 'email.us-west-2.amazonaws.com'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
