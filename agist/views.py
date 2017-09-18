@@ -126,7 +126,7 @@ def process_birthdays(request):
                     settings.AGIST_FROM_EMAIL,
                     # TODO: Use actual email addresses
                     # email_addresses,
-                    ['tim@pierce-fam.com', 'jpierce@centralbcs.org']
+                    ['tim@pierce-fam.com']
                 )
                 email.content_subtype = 'html'
                 if message.attachment:
