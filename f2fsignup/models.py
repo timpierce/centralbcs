@@ -127,7 +127,7 @@ class Member(models.Model):
             email_parms['start_date'] = start_date_text
             message = EmailMessage()
             message.to = [self.email]
-            message.from_email = settings.STAFF_NOTIFICATION_EMAIL
+            message.from_email = settings.F2F_FROM_EMAIL
             message.body = Template(email_text).substitute(email_parms)
             message.subject = 'Face to Face Group Information'
             message.send(fail_silently=True)

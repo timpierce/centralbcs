@@ -1,9 +1,8 @@
 from copy import deepcopy
 from django.shortcuts import render, get_object_or_404, get_list_or_404
-from django.utils.dateformat import DateFormat
 
 from forms import SignupForm
-from models import Group, F2FSettings, Ministry
+from models import Group, Ministry
 
 
 def list(request):

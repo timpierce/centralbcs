@@ -33,8 +33,8 @@ FAITH_PATH_MIN_CHILD_EMAIL_AGE = 16
 # Face 2 Face Signup Settings #
 ###############################
 # Email addresses to send a notification to once the GROUP_SIGNUP_ACTIVE flag is False.
-STAFF_NOTIFICATION_EMAIL = 'smallgroups@centralbcs.org'
+F2F_FROM_EMAIL = 'smallgroups@centralbcs.org'
 
 # Export Fields
-EXPORT_FIELDS = ['id','group', 'ministry', 'student_class', 'first_name', 'last_name', 'gender', 'dob',
+EXPORT_FIELDS = ['id', 'group', 'ministry', 'student_class', 'first_name', 'last_name', 'gender', 'dob',
                  'phone', 'email', 'address', 'address2', 'city', 'state', 'postal_code', 'comments']
