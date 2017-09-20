@@ -26,7 +26,7 @@ ACS_PASS = os.getenv('ACS_PASS')
 #######################
 # Faith Path Settings #
 #######################
-FAITH_PATH_FROM_EMAIL = 'smallgroups@centralbcs.org'
+FAITH_PATH_FROM_EMAIL = 'faithpath@centralbcs.org'
 FAITH_PATH_MIN_CHILD_EMAIL_AGE = 16
 
 ###############################
