@@ -24,7 +24,7 @@ ACS_PASS = os.environ.get('ACS_PASS')
 #######################
 # Faith Path Settings #
 #######################
-AGIST_FROM_EMAIL = 'smallgroups@centralbcs.org'
+AGIST_FROM_EMAIL = 'faithpath@centralbcs.org'
 AGIST_MIN_CHILD_EMAIL_AGE = 16
 
 ###############################
