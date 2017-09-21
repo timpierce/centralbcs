@@ -81,33 +81,33 @@ def process_birthdays(request):
         try:
             person = get_person(child.indvid)
             if person['MemberStatus'] not in ['Former Member', 'Non-Resident Mem.']:
-                logger.info('Processing birthday for ' + str(child['IndvId']))
-                age = relativedelta(datetime.today(), datetime.strptime(child['DateOfBirth'], '%m/%d/%Y')).years
+                logger.info('Processing birthday for ' + str(child.indvid))
+                age = relativedelta(datetime.today(), child.dob).years
                 message = BirthdayMessage.objects.get(pk=age)
                 try:
-                    ActivityLog.objects.get(message=message, child=child['IndvId'])
-                    logger.warning('Email has been previously sent for ' + str(child['IndvId']))
+                    ActivityLog.objects.get(message=message, child=child.indvid)
+                    logger.warning('Email has been previously sent for ' + str(child.indvid))
                 except ActivityLog.MultipleObjectsReturned:
-                    logger.warning('Email has been previously sent multiple times for ' + str(child['IndvId']))
+                    logger.warning('Email has been previously sent multiple times for ' + str(child.indvid))
                 except ObjectDoesNotExist:
 
                     # Build Email Address List
-                    child['email_to'] = []
-                    for family_member in child['FamilyMembers']:
+                    person['email_to'] = []
+                    for family_member in person['FamilyMembers']:
                         if family_member['FamilyPosition'] in ['Head', 'Spouse']:
                             parent = get_person(family_member['IndvId'])
                             for email in parent['Emails']:
-                                child['email_to'].append(email['Email'])
+                                person['email_to'].append(email['Email'])
                     if age >= settings.FAITH_PATH_MIN_CHILD_EMAIL_AGE:
-                        for email in child['Emails']:
-                            child['email_to'].append(email['Email'])
+                        for email in person['Emails']:
+                            person['email_to'].append(email['Email'])
 
                     # Send Email
-                    email_addresses = list(set(child['email_to']))
+                    email_addresses = list(set(person['email_to']))
                     logger.info('Email will be sent to ' + str(email_addresses))
                     email = EmailMessage(
-                        Template(message.subject).substitute(child),
-                        Template(message.content).substitute(child),
+                        Template(message.subject).substitute(person),
+                        Template(message.content).substitute(person),
                         settings.FAITH_PATH_FROM_EMAIL,
                         # TODO: Use actual email addresses
                         # email_addresses,
@@ -123,13 +123,13 @@ def process_birthdays(request):
 
                     # Log that the email was sent
                     activity_log = ActivityLog()
-                    activity_log.child = Child.objects.get(pk=child['IndvId'])
+                    activity_log.child = child
                     activity_log.message = message
                     activity_log.save()
         except KeyError, e:
-            logger.error('Cannot process {}. The field {} does not exist.'.format(child['IndvId'], e.message))
+            logger.error('Cannot process {}. The field {} does not exist.'.format(child.indvid, e.message))
         except ObjectDoesNotExist:
-            logger.info('There is no message established for {} year olds. Skipping id: {}'.format(age, child['IndvId']))
+            logger.info('There is no message established for {} year olds. Skipping id: {}'.format(age, child.indvid))
         except requests.ConnectionError, e:
             logger.info(e)
         except HTTPError, e:
