@@ -76,74 +76,63 @@ def import_children(request):
 
 @csrf_exempt
 def process_birthdays(request):
-    # Get list of birthdays
-    birthdays = []
     today = datetime.today()
     for child in Child.objects.filter(dob__month=today.month, dob__day=today.day):
         try:
             person = get_person(child.indvid)
             if person['MemberStatus'] not in ['Former Member', 'Non-Resident Mem.']:
-                birthdays.append(person)
-        except HTTPError, e:
-            if e.response.status_code == 404:
-                logger.warning('The record for {} no longer exists in ACS.'.format(child.indvid))
-    logger.info('Found {} birthdays for today.'.format(len(birthdays)))
+                logger.info('Processing birthday for ' + str(child['IndvId']))
+                age = relativedelta(datetime.today(), datetime.strptime(child['DateOfBirth'], '%m/%d/%Y')).years
+                message = BirthdayMessage.objects.get(pk=age)
+                try:
+                    ActivityLog.objects.get(message=message, child=child['IndvId'])
+                    logger.warning('Email has been previously sent for ' + str(child['IndvId']))
+                except ActivityLog.MultipleObjectsReturned:
+                    logger.warning('Email has been previously sent multiple times for ' + str(child['IndvId']))
+                except ObjectDoesNotExist:
 
-    for child in birthdays:
-        try:
-            logger.info('Processing birthday for ' + str(child['IndvId']))
-            age = relativedelta(datetime.today(), datetime.strptime(child['DateOfBirth'], '%m/%d/%Y')).years
-            message = BirthdayMessage.objects.get(pk=age)
-            try:
-                ActivityLog.objects.get(message=message, child=child['IndvId'])
-                logger.warning('Email has already been sent for ' + str(child['IndvId']))
-                message_received = True
-            except ActivityLog.MultipleObjectsReturned:
-                logger.warning('Email has already been sent multiple times for ' + str(child['IndvId']))
-                message_received = True
-            except ObjectDoesNotExist:
-                message_received = False
-
-            if not message_received:
-                # Build Email Address List
-                child['email_to'] = []
-                for family_member in child['FamilyMembers']:
-                    if family_member['FamilyPosition'] in ['Head', 'Spouse']:
-                        parent = get_person(family_member['IndvId'])
-                        for email in parent['Emails']:
+                    # Build Email Address List
+                    child['email_to'] = []
+                    for family_member in child['FamilyMembers']:
+                        if family_member['FamilyPosition'] in ['Head', 'Spouse']:
+                            parent = get_person(family_member['IndvId'])
+                            for email in parent['Emails']:
+                                child['email_to'].append(email['Email'])
+                    if age >= settings.FAITH_PATH_MIN_CHILD_EMAIL_AGE:
+                        for email in child['Emails']:
                             child['email_to'].append(email['Email'])
 
-                if age >= settings.FAITH_PATH_MIN_CHILD_EMAIL_AGE:
-                    for email in child['Emails']:
-                        child['email_to'].append(email['Email'])
+                    # Send Email
+                    email_addresses = list(set(child['email_to']))
+                    logger.info('Email will be sent to ' + str(email_addresses))
+                    email = EmailMessage(
+                        Template(message.subject).substitute(child),
+                        Template(message.content).substitute(child),
+                        settings.FAITH_PATH_FROM_EMAIL,
+                        # TODO: Use actual email addresses
+                        # email_addresses,
+                        ['tim@pierce-fam.com']
+                    )
+                    email.content_subtype = 'html'
+                    if message.attachment:
+                        attachment_file = default_storage.open(message.attachment.name, 'rb')
+                        attachment_content = attachment_file.read()
+                        attachment_file.close()
+                        email.attach(message.attachment.name, attachment_content, 'application/pdf')
+                    email.send()
 
-                # Send Email
-                email_addresses = list(set(child['email_to']))
-                logger.info('Email will be sent to ' + str(email_addresses))
-                email = EmailMessage(
-                    Template(message.subject).substitute(child),
-                    Template(message.content).substitute(child),
-                    settings.FAITH_PATH_FROM_EMAIL,
-                    # TODO: Use actual email addresses
-                    # email_addresses,
-                    ['tim@pierce-fam.com']
-                )
-                email.content_subtype = 'html'
-                if message.attachment:
-                    attachment_file = default_storage.open(message.attachment.name, 'rb')
-                    attachment_content = attachment_file.read()
-                    attachment_file.close()
-                    email.attach(message.attachment.name, attachment_content, 'application/pdf')
-                email.send()
-                activity_log = ActivityLog()
-                activity_log.child = Child.objects.get(pk=child['IndvId'])
-                activity_log.message = message
-                activity_log.save()
+                    # Log that the email was sent
+                    activity_log = ActivityLog()
+                    activity_log.child = Child.objects.get(pk=child['IndvId'])
+                    activity_log.message = message
+                    activity_log.save()
         except KeyError, e:
             logger.error('Cannot process {}. The field {} does not exist.'.format(child['IndvId'], e.message))
         except ObjectDoesNotExist:
-            logger.info(
-                'There is no message established for {} year olds. Skipping id: {}'.format(age, child['IndvId']))
+            logger.info('There is no message established for {} year olds. Skipping id: {}'.format(age, child['IndvId']))
         except requests.ConnectionError, e:
             logger.info(e)
+        except HTTPError, e:
+            if e.response.status_code == 404:
+                logger.warning('The record for {} no longer exists in ACS.'.format(child.indvid))
     return HttpResponse(status=200)
