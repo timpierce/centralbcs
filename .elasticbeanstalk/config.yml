@@ -1,9 +1,9 @@
 branch-defaults:
   acs:
-    environment: centralbcs-dev
+    environment: centralbcs
     group_suffix: null
   master:
-    environment: centralbcs
+    environment: f2f-prod
     group_suffix: null
 environment-defaults:
   centralbcs:
