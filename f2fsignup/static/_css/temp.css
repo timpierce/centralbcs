@@ -1,0 +1,85 @@
+/*
+li#search-desktop {
+	display: none !important;
+}
+*/
+
+body {
+	background: url(http://4bc4a5de7394f47dee11-adfc0f997d7cc5b860ca026f6b04da63.r7.cf2.rackcdn.com/uploaded/s/0e3670379_1411420770_site-body-bg.png) repeat top left;
+}
+
+.text table, #text table {
+    width: 100%;
+    margin: 4em 0px;
+        margin-top: 4em;
+        margin-right-value: 0px;
+        margin-bottom: 4em;
+        margin-left-value: 0px;
+        margin-left-ltr-source: physical;
+        margin-left-rtl-source: physical;
+        margin-right-ltr-source: physical;
+        margin-right-rtl-source: physical;
+}
+
+.text table, #text table:first-child {
+	margin: 0 0 4em 0;
+}
+
+#text caption {
+  background-color: #0069a6 !important;
+}
+
+.text th,
+#text th {
+  font-size: 1.3em;
+  font-family: MuseoSans700;
+  background: #DAD8D6;
+}
+
+.text td,
+#text td {
+  font-size: 1.2em;
+  font-family: MuseoSans300;
+}
+
+nav.mobile {
+    position: absolute;
+    width: 70%;
+    top: 0px;
+    overflow: auto;
+    height: 100% !important;
+}
+
+#mobile-home > li > ul ul a, ul#menu-more-links > li > ul ul a {
+	border-bottom: 1px solid #676767;
+}
+
+#mobile-home > li > ul ul a::before, ul#menu-more-links > li > ul ul a::before {
+	content: "Â» "
+}
+
+@media (min-width: 61.5em) {
+	nav.primary.desktop {
+		display: block;
+		position: absolute;
+		right: 0;
+		height: 100px;
+		height: 55px !important;
+		top: 0;
+		margin: auto;
+		bottom: 0;
+	}
+}
+
+#feat-sermon .meta {
+	font-weight: 300;
+	font-size: 1.6em;
+	margin-left: 8px;
+}
+
+#feat-sermon a {
+	font-size: 1.6em;
+	font-family: MuseoSans700;
+	vertical-align: middle;
+	padding-bottom: 1px;
+}
