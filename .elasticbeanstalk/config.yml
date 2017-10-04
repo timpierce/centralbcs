@@ -6,10 +6,10 @@ branch-defaults:
     environment: f2f-prod
     group_suffix: null
 environment-defaults:
-  centralbcs:
+  agist-worker:
     branch: null
     repository: null
-  agist-worker:
+  centralbcs:
     branch: null
     repository: null
   f2f-prod:

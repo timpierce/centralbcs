@@ -1,0 +1,525 @@
+/* $navColor, color, Nav Links */
+/* $bgHeader, color, Header Background */
+/* $textColor, color, Text Color */
+/* $bgBody, color, Body Background */
+/* $bgContent, color, Content Background */
+/* $bgFeatured, color, Featured Background */
+/* $accentColor1, color, Accent Color 1 */
+/* $accentColor2, color, Accent Color 2 */
+/* $accentColor3, color, Accent Color 3 */
+/* $accentColor4, color, Accent Color 4 */
+/* $accentColor5, color, Accent Color 5 */
+/* $bgButton1, color, Button Background Color 1 */
+/* $bgButton2, color, Button Background Color 2 */
+/* $bgButton3, color, Button Background Color 3 */
+/* $bgButton4, color, Button Background Color 4 */
+/* $buttonColor, color, Button Text Color */
+/* $bgFooter, color, Footer Background */
+/* $footerColor, color, Footer Color */
+/* $bgHomePageImage, image, Homepage Image, /_img/page-bg.png */
+/* $bgPageImage, image, Content Background Texture, /_img/page-texture.gif */
+/* Header Background
+================================================== */
+#nav > li > ul {
+  /* $bgHeader */
+  background: #0069a6;
+  /* $bgHeader */
+  background: rgba(0, 105, 166, 0.8);
+}
+
+header.header {
+  /* $bgHeader */
+  background: #0069a6;
+}
+
+/* Body Background
+================================================== */
+#rotator,
+#page-wrap,
+#newsletter-wrap {
+  /* $bgBody */
+  background-color: #fcfcfc;
+}
+
+/* Content Background
+================================================== */
+.container.main,
+.subpage #page-wrap #content,
+.subpage #page-wrap #sidebar,
+.fullwidth #page-wrap #content,
+.fullwidth #page-wrap #sidebar,
+.post-header__title {
+  /* $bgContent */
+  background-color: #fcfcfc;
+}
+
+.module .sermons .media a {
+  /* $bgContent */
+  color: #fcfcfc;
+}
+
+/* Homepage Background Image
+================================================== */
+#page-wrap {
+  /* $bgHomePageImage */
+  background-image: url(/_img/page-bg.png);
+}
+
+/* Content Background Texture
+================================================== */
+.subpage #page-wrap,
+.fullwidth #page-wrap {
+  /* $bgPageImage */
+  background-image: url("/_img/page-texture.gif");
+}
+
+/* Featured Background
+================================================== */
+section#feat-footer {
+  /* $bgFeatured */
+  background-color: #fcfcfc;
+}
+
+/* Footer Background
+================================================== */
+#footer,
+#footer-nav li a:hover,
+#footer-quick-links li a:hover,
+#feat-footer .featured-item:hover {
+  /* $bgFooter */
+  background-color: #272727;
+}
+
+#footer a.backtotop,
+#footer-social-links li a,
+#footer-social-links li a:hover {
+  /* $bgFooter */
+  color: #272727;
+}
+
+/* Mobile Nav Background
+================================================== */
+#outer-wrap {
+  /* $bgMobileNav */
+  background-color: #737373;
+}
+
+/* Mobile UI Color
+================================================== */
+#menu-more,
+header.mobile .search {
+  /* $mobileUIColor */
+  color: rgba(252, 252, 252, 0.6);
+}
+
+#menu-more.active,
+header.mobile .search.active {
+  /* $mobileUIColor */
+  color: #fcfcfc;
+}
+
+/* Text Color
+================================================== */
+p,
+#text h2,
+#text h3,
+#text h4,
+#text h6,
+#text li,
+#text h3 a,
+#text h3 a:hover,
+#breadcrumbs,
+h1#page-title,
+#feat-sermon a,
+#search-mobile a,
+#events .event a,
+#articles article h3 a,
+#articles article h3 a:hover,
+#articles .title h2,
+#articles .title h2 a,
+#articles .title h2 a:hover,
+#articles p.meta.detail,
+#articles p.meta.detail a,
+#events article a,
+#sermons .media a,
+#sermons .media span,
+#articles .media a,
+#articles .media span,
+.module .byline a,
+#head-wrap .meta a,
+.calendar td a:hover,
+#events article h2 a,
+#event-nav li a:hover,
+#sermons article h3 a,
+#search-desktop input:active
+#search-desktop:hover input,
+#sidebar .sidebar-article a,
+#latest-footer .module h4 a,
+#events #event-nav li.active a,
+#sidebar .sidebar-section a:hover,
+#sidebar section #subnav li a:hover,
+#sidebar .sidebar-section h3 a,
+#sidebar .sidebar-section h3 a:hover,
+#sidebar .module .sermons h3 a:hover,
+#sidebar .module .sermons .byline li,
+.featured-post__item .featured-post__meta {
+  /* $textColor */
+  color: #303030;
+}
+
+#sidebar .sidebar-title,
+#sidebar-nav header h2,
+#sidebar-nav header h2 a,
+#sidebar section #subnav li a {
+  /* $textColor */
+  color: #303030;
+  /* $textColor */
+  color: rgba(48, 48, 48, 0.8);
+}
+
+#text h3 a:hover,
+#featured-sermon a:hover,
+#sermons .media li a:hover,
+#sermons article h3 a:hover,
+#articles .title h2 a:hover,
+#articles .media li a:hover,
+#articles article h3 a:hover,
+#latest-footer .module h4 a:hover,
+#sidebar .sidebar-section h3 a:hover {
+  /* $textColor */
+  border-bottom-color: #303030;
+}
+
+.pager span,
+#events .calendar th {
+  /* $textColor */
+  background-color: #303030;
+}
+
+/* Nav Color
+================================================== */
+.desktop .search:hover,
+#nav > li:hover > a,
+#nav > li.current > a,
+#mobile-home > li > a,
+#nav > li > ul > li > a,
+#menu-more-links > li > a,
+#menu-more-links > li > ul > li > a,
+#nav > li > ul > li:hover > a,
+#nav > li > ul > li > ul > li:hover > a,
+header.mobile h1 {
+  /* $navColor */
+  color: #fcfcfc;
+}
+
+#nav > li > a,
+.desktop .search {
+  /* $navColor */
+  color: #fcfcfc;
+  /* $navColor */
+  color: rgba(252, 252, 252, 0.7);
+}
+
+/* Footer Color
+================================================== */
+#ekklogo span,
+#footer,
+#footer p,
+#footer-nav a,
+#footer a {
+  /* $footerColor */
+  color: #fcfcfc;
+  /* $footerColor */
+  color: rgba(252, 252, 252, 0.7);
+}
+
+#footer a.backtotop,
+.mask footer#footer #ekklogo a {
+  /* $footerColor */
+  background-color: #fcfcfc;
+  /* $footerColor */
+  background-color: rgba(252, 252, 252, 0.6);
+}
+
+.mask footer#footer #ekklogo a:hover {
+  /* $footerColor */
+  background-color: #fcfcfc;
+}
+
+#footer a:hover,
+#footer li.current > a:hover {
+  /* $footerColor */
+  color: #fcfcfc;
+}
+
+/* Accent Color 1
+================================================== */
+#next:hover,
+#prev:hover,
+.calendar tbody,
+.slide .medium-btn,
+.module .events .date,
+#sidebar #sidebar-nav {
+  /* $accentColor1 */
+  background-color: #fcfcfc;
+}
+
+#next,
+#prev,
+#text caption,
+#events .calendar th,
+#breadcrumbs .delimiter,
+#sidebar .sermons .media a:hover,
+.slide .medium-btn:hover,
+.contact.mobile .text p,
+ol.cycle-slideshow .meta p,
+#sidebar section .media li a,
+#feat-footer .featured-item h2:hover,
+ul#menu-more-links li.hasChildren.active > a,
+.featured-post__meta,
+.featured-post__btn .post-icon {
+  /* $accentColor1 */
+  color: #fcfcfc;
+}
+
+/* Accent Color 2
+================================================== */
+.list-time-month,
+.calendar td > a:hover,
+.slide .medium-btn:hover {
+  /* $accentColor2 */
+  background-color: #57bfe8;
+}
+
+#tagline,
+.back-btn,
+#strategy-landing #content a,
+#detail-cycle .slide .text a {
+  /* $accentColor2 */
+  color: #57bfe8;
+}
+
+.module .events .event .date:hover {
+  /* $accentColor2 */
+  border-top-color: #57bfe8;
+}
+
+/* Accent Color 3
+================================================== */
+#next:hover,
+#prev:hover,
+#text a,
+#text h5,
+.module h3 a,
+.back-btn:hover,
+.calendar td ul li a,
+.calendar td ul li a:hover,
+#events .event a:hover,
+#events article a:hover,
+#newsletter-wrap .text h2,
+#latest-footer .module h5,
+#sidebar .sidebar-section a:hover,
+#events .featured-event .meta a,
+#sidebar section #subnav > li > a,
+#sidebar .sidebar-section .more a:hover,
+#blogs aside ul.mcms_filter_list li a,
+#blogs aside.left ul[class*=list] li a,
+#blogs .comment header cite .commenter-name,
+#blogs article h3 a:hover,
+#blogs a.blog-comment-number:hover,
+#breadcrumbs a:hover,
+.slide .medium-btn,
+.module h3 a:hover,
+.module .byline a:hover,
+.contact.mobile .text a,
+.contact.mobile .text h3,
+#head-wrap .meta a:hover,
+#events article a:hover,
+ol.cycle-slideshow .meta h2,
+#articles article .meta a:hover,
+#sidebar .module .sermons h3 a,
+#sidebar-nav header h2 a:hover,
+#sidebar .sidebar-article a:hover,
+#sidebar .sidebar-section a {
+  /* $accentColor3 */
+  color: #0069a6;
+}
+
+#next,
+#prev,
+#progress {
+  /* $accentColor3 */
+  background-color: #0069a6;
+}
+
+#text a:hover,
+.calendar td ul li a:hover,
+#sidebar .sidebar-section .more a:hover {
+  /* $accentColor3 */
+  border-bottom-color: #0069a6;
+}
+
+.module .events .event .date:hover {
+  /* $accentColor3 */
+  border-top-color: #0069a6;
+}
+
+/* Accent Color 4
+================================================== */
+#feat-footer .featured-item p {
+  /* $accentColor4 */
+  color: #f75050;
+}
+
+/* Accent Color 5
+================================================== */
+#event-nav a,
+.module .day,
+.module .byline,
+.module .meta,
+.module .meta a,
+.module .dateTime,
+.module .dateTime span,
+.module .events .date .month,
+#blogs .meta,
+.calendar td a,
+.detail .media a,
+article .media a,
+.detail .media span,
+article .media span,
+#events .featured-start,
+#articles article .meta a,
+#articles aside.left,
+#articles .return a:hover,
+article.featured .title a,
+#feat-footer .featured-item h4,
+#sidebar .sidebar-section .more a,
+#sidebar .sidebar-section .events h3 a,
+#sidebar .sidebar-section .events h3 a:hover {
+  /* $accentColor5 */
+  color: #737373;
+}
+
+#text caption,
+.featured-post__nav {
+  /* $accentColor5 */
+  background-color: #737373;
+}
+
+blockquote {
+  /* $accentColor5 */
+  border-left-color: #737373;
+}
+
+.module .events .event .date {
+  /* $accentColor5 */
+  border-top-color: #737373;
+}
+
+#sidebar .sidebar-section .more a {
+  /* $accentColor5 */
+  border-bottom-color: #737373;
+}
+
+#breadcrumbs,
+#text tbody td:nth-of-type(odd),
+#text thead th:nth-of-type(odd),
+#sidebar section #subnav li a:hover,
+#sidebar section #subnav li.current > a,
+.featured-post {
+  /* $accentColor5 */
+  background-color: #none; /*background-color: #737373;*/
+  /* $accentColor5 */
+  background-color: rgba(115, 115, 115, 0.1);
+}
+
+#event-nav,
+#nav > li > ul > li:hover > a,
+.post-list__item,
+.post-nav {
+  /* $accentColor5 */
+  background-color: #737373;
+  /* $accentColor5 */
+  background-color: rgba(115, 115, 115, 0.3);
+}
+
+/* Buttons!!!!!
+================================================== */
+a.large-btn,
+p.large-btn a,
+#text a.large-btn,
+#text p.large-btn a,
+#text button,
+#text input[type='submit'],
+.module .sermons .media ul {
+  /* $bgButton1 */
+  background-color: #0069a6;
+}
+
+a.large-btn,
+p.large-btn a,
+a.medium-btn,
+p.medium-btn a,
+a.small-btn,
+p.small-btn a,
+#text a.large-btn,
+#text p.large-btn a,
+#text a.medium-btn,
+#text p.medium-btn a,
+#text a.small-btn,
+#text p.small-btn a,
+#text button,
+#text input[type='submit'],
+.module .sermons .media ul li a:hover {
+  /* $buttonColor */
+  color: #fcfcfc;
+}
+
+a.small-btn,
+p.small-btn a,
+#footer-social-links .pos-2,
+#featured-links .pos-1 a,
+#featured-links .pos-1 a:hover:active {
+  /* $bgButton2 */
+  background-color: #ab2a28;
+}
+
+#footer-social-links .pos-1,
+#featured-links .pos-2 a,
+#featured-links .pos-2 a:hover:active,
+.pager span.cycle-pager-active {
+  /* $bgButton1 */
+  background-color: #0069a6;
+}
+
+a.medium-btn,
+p.medium-btn a,
+#footer-social-links .pos-3,
+#featured-links .pos-3 a,
+#featured-links .pos-3 a:hover:active {
+  /* $bgButton3 */
+  background-color: #b9bf0d;
+}
+
+#footer-social-links .pos-4,
+#featured-links .pos-4 a,
+#featured-links .pos-4 a:hover:active {
+  /* $bgButton4 */
+  background-color: #4ec0ea;
+}
+
+::selection {
+  text-shadow: none;
+  /* $accentColor1 */
+  color: #fcfcfc;
+  /* $accentColor2 */
+  background-color: #57bfe8;
+}
+
+::-moz-selection {
+  text-shadow: none;
+  /* $accentColor1 */
+  color: #fcfcfc;
+  /* $accentColor2 */
+  background-color: #57bfe8;
+}
