@@ -62,7 +62,7 @@ header.header {
 ================================================== */
 #page-wrap {
   /* $bgHomePageImage */
-  background-image: url(/_img/page-bg.png);
+  background-image: url("http://centralbcs.org/_img/page-bg.png");
 }
 
 /* Content Background Texture
@@ -70,7 +70,7 @@ header.header {
 .subpage #page-wrap,
 .fullwidth #page-wrap {
   /* $bgPageImage */
-  background-image: url("/_img/page-texture.gif");
+  background-image: url("http://centralbcs.org/_img/page-texture.gif");
 }
 
 /* Featured Background
