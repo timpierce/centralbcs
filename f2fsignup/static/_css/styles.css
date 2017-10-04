@@ -742,7 +742,7 @@ footer#footer #ekklogo a {
   margin-top: -7px;
   width: 92px;
   height: 23px;
-  background: url("/_img/ekk_logo_gray.png");
+  background: url("http://centralbcs.org/_img/ekk_logo_gray.png");
 }
 footer#footer #ekklogo span {
   font: 10px/10px helvetica, sans-serif;
@@ -994,7 +994,7 @@ nav.mobile div.search {
   margin-left: 4%;
   padding: .64em 0;
   width: 2.5em;
-  background: url("/_img/feat-bg.png") left repeat-y;
+  background: url("http://centralbcs.org/_img/feat-bg.png") left repeat-y;
 }
 nav.mobile div.search a {
   display: block;
@@ -1207,7 +1207,7 @@ ul#menu-more-links li .hotspot {
 #mobile-home > li > ul,
 ul#menu-more-links > li > ul {
   width: 90%;
-  background: rgba(0, 0, 0, 0.25) url("/_img/mobile-nav-expanded-arrow.png") top center no-repeat;
+  background: rgba(0, 0, 0, 0.25) url("http://centralbcs.org/_img/mobile-nav-expanded-arrow.png") top center no-repeat;
   height: 0;
   padding: 0 5%;
   overflow: hidden;
@@ -1248,7 +1248,7 @@ ul#menu-more-links li.hasChildren a {
 }
 #mobile-home li.hasChildren > .hotspot,
 ul#menu-more-links li.hasChildren > .hotspot {
-  background: url("/_img/mobile-expand.png") 75% center no-repeat;
+  background: url("http://centralbcs.org/_img/mobile-expand.png") 75% center no-repeat;
 }
 #mobile-home li.hasChildren > ul > li:last-child > a,
 ul#menu-more-links li.hasChildren > ul > li:last-child > a {
@@ -1262,7 +1262,7 @@ ul#menu-more-links li:not(.hasChildren) a {
 ul#menu-more-links li.hasChildren.active > .hotspot {
   border-bottom: none;
   cursor: pointer;
-  background: url("/_img/mobile-collapse.png") 75% center no-repeat;
+  background: url("http://centralbcs.org/_img/mobile-collapse.png") 75% center no-repeat;
 }
 #mobile-home li.hasChildren.active > ul,
 ul#menu-more-links li.hasChildren.active > ul {
@@ -1275,7 +1275,7 @@ ul#menu-more-links li.hasChildren.active > ul {
   width: 100%;
   text-align: center;
   padding: 3.55% 0;
-  background: url("../img/more-up.png") no-repeat center center;
+  background: url("http://centralbcs.org/img/more-up.png") no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
@@ -3414,7 +3414,7 @@ div#mcms_easy_edit_toggle {
     ordered & tabbed in a way that represents the nesting of the generated HTML.
 */
 #cboxOverlay {
-  background: url(../_img/overlay.png) repeat 0 0;
+  background: url(/_img/overlay.png) repeat 0 0;
 }
 
 #colorbox {
