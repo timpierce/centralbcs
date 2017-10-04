@@ -1671,11 +1671,11 @@ input[type='submit'] {
 @font-face
 {
     font-family: pictonic;
-    src: url("../_fonts/pictonic.eot");
-    src: url("../_fonts/pictonic.eot?#iefix") format("embedded-opentype"),
-        url("../_fonts/pictonic.ttf") format("truetype"),
-        url("../_fonts/pictonic.woff") format("woff"),
-        url("../_fonts/pictonic.svg") format("svg");
+    src: url("/static/_fonts/pictonic.eot");
+    src: url("/static/_fonts/pictonic.eot?#iefix") format("embedded-opentype"),
+        url("/static/_fonts/pictonic.ttf") format("truetype"),
+        url("/static/_fonts/pictonic.woff") format("woff"),
+        url("/static/_fonts/pictonic.svg") format("svg");
     font-weight: normal;
     font-style: normal;
 }
