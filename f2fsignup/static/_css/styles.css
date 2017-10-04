@@ -994,7 +994,7 @@ nav.mobile div.search {
   margin-left: 4%;
   padding: .64em 0;
   width: 2.5em;
-  background: url("/_img/feat-bg.png") left repeat-y;
+  background: url("http://centralbcs.org/_fonts/_img/feat-bg.png") left repeat-y;
 }
 nav.mobile div.search a {
   display: block;
@@ -1671,11 +1671,11 @@ input[type='submit'] {
 @font-face
 {
     font-family: pictonic;
-    src: url("/static/_fonts/pictonic.eot");
-    src: url("/static/_fonts/pictonic.eot?#iefix") format("embedded-opentype"),
-        url("/static/_fonts/pictonic.ttf") format("truetype"),
-        url("/static/_fonts/pictonic.woff") format("woff"),
-        url("/static/_fonts/pictonic.svg") format("svg");
+    src: url("http://centralbcs.org/_fonts/pictonic.eot");
+    src: url("http://centralbcs.org/_fonts/pictonic.eot?#iefix") format("embedded-opentype"),
+        url("http://centralbcs.org/_fonts/pictonic.ttf") format("truetype"),
+        url("http://centralbcs.org/_fonts/pictonic.woff") format("woff"),
+        url("http://centralbcs.org/_fonts/pictonic.svg") format("svg");
     font-weight: normal;
     font-style: normal;
 }
@@ -1756,28 +1756,28 @@ a[class^="icon-"], a[class*="icon-"], span[class^="icon-"], span[class*="icon-"]
 
 @font-face {
    font-family: 'MuseoSans100';
-     src: url('/static/_fonts/MuseoSans-100.woff') format('woff');
+     src: url('http://centralbcs.org/_fonts/MuseoSans-100.woff') format('woff');
    font-weight: normal;
    font-style: normal;
 }
 
 @font-face {
    font-family: 'MuseoSans300';
-      src: url('/static/_fonts/MuseoSans-300.woff') format('woff');
+      src: url('http://centralbcs.org/_fonts/MuseoSans-300.woff') format('woff');
    font-weight: normal;
    font-style: normal;
 }
 
 @font-face {
    font-family: 'MuseoSans500';
-      src: url('/static/_fonts/MuseoSans-500.woff') format('woff');
+      src: url('http://centralbcs.org/_fonts/MuseoSans-500.woff') format('woff');
    font-weight: normal;
    font-style: normal;
 }
 
 @font-face {
    font-family: 'MuseoSans700';
-      src: url('/static/_fonts/MuseoSans-700.woff') format('woff');
+      src: url('http://centralbcs.org/_fonts/MuseoSans-700.woff') format('woff');
    font-weight: normal;
    font-style: normal;
 }
@@ -3060,10 +3060,10 @@ ol.cycle-slideshow .meta h2, ol.cycle-slideshow .meta p {
 }
 
 .mask footer#footer #ekklogo a {
-  -webkit-mask-image: url("/_img/ekk_mask.png");
-  -o-mask-image: url("/_img/ekk_mask.png");
-  -moz-mask-image: url("/_img/ekk_mask.png");
-  mask-image: url("/_img/ekk_mask.png");
+  -webkit-mask-image: url("http://centralbcs.org/_img/ekk_mask.png");
+  -o-mask-image: url("http://centralbcs.org/_img/ekk_mask.png");
+  -moz-mask-image: url("http://centralbcs.org/_img/ekk_mask.png");
+  mask-image: url("http://centralbcs.org/_img/ekk_mask.png");
 }
 
 .no-js #home #content {
