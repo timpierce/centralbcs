@@ -1756,28 +1756,28 @@ a[class^="icon-"], a[class*="icon-"], span[class^="icon-"], span[class*="icon-"]
 
 @font-face {
    font-family: 'MuseoSans100';
-     src: url('/_fonts/MuseoSans-100.woff') format('woff');
+     src: url('/static/_fonts/MuseoSans-100.woff') format('woff');
    font-weight: normal;
    font-style: normal;
 }
 
 @font-face {
    font-family: 'MuseoSans300';
-      src: url('/_fonts/MuseoSans-300.woff') format('woff');
+      src: url('/static/_fonts/MuseoSans-300.woff') format('woff');
    font-weight: normal;
    font-style: normal;
 }
 
 @font-face {
    font-family: 'MuseoSans500';
-      src: url('/_fonts/MuseoSans-500.woff') format('woff');
+      src: url('/static/_fonts/MuseoSans-500.woff') format('woff');
    font-weight: normal;
    font-style: normal;
 }
 
 @font-face {
    font-family: 'MuseoSans700';
-      src: url('/_fonts/MuseoSans-700.woff') format('woff');
+      src: url('/static/_fonts/MuseoSans-700.woff') format('woff');
    font-weight: normal;
    font-style: normal;
 }
