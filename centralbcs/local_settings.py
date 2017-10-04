@@ -12,14 +12,12 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 AWS_STORAGE_BUCKET_NAME = 'centralbcs'
 AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_KEY')
 
-
 ################
 # ACS Settings #
 ################
 ACS_SITE_ID = 11607
 ACS_USER = os.environ.get('ACS_USER')
 ACS_PASS = os.environ.get('ACS_PASS')
-
 
 #######################
 # Faith Path Settings #
