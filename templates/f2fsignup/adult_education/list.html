@@ -1,14 +1,14 @@
-{% extends "signup/base.html" %}
+{% extends "f2fsignup/base.html" %}
 {% load signup_extras %}
 {% load static from staticfiles %}
 {% block head %}
-    <link rel="stylesheet" type="text/css" href="{% static '_css/f2f_list.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static '_css/f2f_list.css' %}" media="screen"/>
 {% endblock %}
 {% block content %}
     <div id="text">
         <p>
-            <strong>Select a group that fits your schedule!</strong> All groups meet at 6:30pm. Once a group is full it
-            will be marked as closed. If you can't
+            <strong>Select a group that matches your schedule!</strong> All groups meet at 6:30pm. Once a group is full
+            it will be marked as closed. If you can't
             find an open group that fits your schedule, please <a href="mailto:smallgroups@centralbcs.org">send us an
             email</a> so
             we can help find a group for you.
@@ -25,8 +25,8 @@
             </tr>
             {% for group in groups %}
                 <tr>
-                    {% if group|has_openings:"college" %}
-                        <td><a href="addme/{{ group.id }}?ministry=college&kiosk={{ kiosk }}">Join Group</a></td>
+                    {% if group|has_openings:"adult_education" %}
+                        <td><a href="addme/{{ group.id }}/?kiosk={{ kiosk }}">Join Group</a></td>
                         <td>{{ group.leaders }}</td>
                         <td>{{ group.hosts }}</td>
                         <td>{{ group.location }}</td>
@@ -41,9 +41,5 @@
                 </tr>
             {% endfor %}
         </table>
-    </div>
-    <div style="width:425px;height:350px">
-        <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-                src="https://mapsengine.google.com/map/edit?mid=zLgFT1TRBa94.kVCsfi9l6jJw"></iframe>
     </div>
 {% endblock %}

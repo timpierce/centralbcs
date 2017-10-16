@@ -3,7 +3,10 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+
 DEBUG = True
+if os.getenv('DJANGO_DEBUG_LEVEL') == 'ERROR':
+    DEBUG = False
 
 ADMINS = (
     ('Tim Pierce', 'timpierce.py@gmail.com'),
@@ -32,7 +35,7 @@ else:
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ['localhost', '.elasticbeanstalk.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.elasticbeanstalk.com']
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -140,7 +143,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'storages',
-    'agist',
+    'faithpath',
     'f2fsignup',
 ]
 
@@ -194,7 +197,7 @@ LOGGING = {
             'handlers': ['null'],
             'propagate': False,
         },
-        'agist': {
+        'faithpath': {
             'handlers': ['console'],
             'level': os.getenv('DJANGO_DEBUG_LEVEL', 'INFO'),
             'propagate': False,

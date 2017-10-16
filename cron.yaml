@@ -1,8 +1,8 @@
 version: 1
 cron:
  - name: "import_children"
-   url: "/agist/import_children/"
+   url: "/faithpath/import_children/"
    schedule: "30 14 * * *"
  - name: "process_birthdays"
-   url: "/agist/process_birthdays/"
+   url: "/faithpath/process_birthdays/"
    schedule: "35 14 * * *"

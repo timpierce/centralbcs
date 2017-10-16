@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class AgistConfig(AppConfig):
-    name = 'agist'
+class FaithPathConfig(AppConfig):
+    name = 'faithpath'
     verbose_name = 'Faith Path'
