@@ -10,3 +10,6 @@ urlpatterns = [
     url(r'^faithpath/', include('faithpath.urls')),
     url(r'^admin/', include(admin.site.urls)),
 ]
+
+admin.site.site_header = 'Central Baptist Church'
+admin.site.site_title = 'Central Baptist Church'

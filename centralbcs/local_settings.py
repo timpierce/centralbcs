@@ -6,10 +6,7 @@ SERVER_EMAIL = 'timpierce.py@gmail.com'
 ################
 # ACS Settings #
 ################
-ACS_SEC_ID = os.getenv('ACS_SEC_ID')
 ACS_SITE_ID = 11607
-ACS_SOAP_URL = 'https://secure.accessacs.com/acscfwsv2/wsca.asmx'
-ACS_SOAP_IMPORT_FILTER = 'http://acstechnologies.com/'
 ACS_USER = os.getenv('ACS_USER')
 ACS_PASS = os.getenv('ACS_PASS')
 
