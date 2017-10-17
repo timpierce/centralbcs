@@ -2,7 +2,7 @@ from csv import reader
 from optparse import make_option
 
 from django.core.management.base import BaseCommand
-from signup.models import Group
+from f2fsignup.models import Group
 
 
 class Command(BaseCommand):
@@ -28,5 +28,5 @@ class Command(BaseCommand):
                 group.day_of_week = row[7].strip()
                 group.name = row[8].strip()
                 group.save()
-                import_count = import_count + 1
+                import_count += 1
         self.stdout.write('Successfully imported %s groups' % import_count)

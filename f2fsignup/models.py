@@ -29,7 +29,7 @@ class ImportFile(models.Model):
 
 
 class Ministry(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
     limit = models.PositiveSmallIntegerField()
 
     def __unicode__(self):

@@ -2,6 +2,9 @@ import os
 
 
 SERVER_EMAIL = 'timpierce.py@gmail.com'
+SITE_ID = 1
+SITE_HEADER = 'Central Baptist Church'
+SITE_TITLE = 'Central Baptist Church'
 
 ################
 # ACS Settings #

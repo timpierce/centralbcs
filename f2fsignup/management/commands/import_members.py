@@ -2,7 +2,7 @@ from csv import reader
 from datetime import datetime
 
 from django.core.management.base import BaseCommand
-from signup.models import Member, Group
+from f2fsignup.models import Member, Group
 
 
 class Command(BaseCommand):
