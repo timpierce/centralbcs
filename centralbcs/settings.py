@@ -3,10 +3,8 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
+PROD = False
 DEBUG = True
-if os.getenv('DJANGO_DEBUG_LEVEL') == 'ERROR':
-    DEBUG = False
 
 ADMINS = (
     ('Tim Pierce', 'timpierce.py@gmail.com'),
@@ -14,17 +12,18 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-if 'RDS_DB_NAME' in os.environ:
+if PROD:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': os.environ['RDS_DB_NAME'],
-            'USER': os.environ['RDS_USERNAME'],
-            'PASSWORD': os.environ['RDS_PASSWORD'],
-            'HOST': os.environ['RDS_HOSTNAME'],
-            'PORT': os.environ['RDS_PORT'],
+            'NAME': 'centralbcs',
+            'USER': 'centralbcsdb',
+            'PASSWORD': 'c0mpl3x!',
+            'HOST': 'centralbcs.xtendapp.com',
+            'PORT': '3306',
         }
     }
+
 else:
     DATABASES = {
         'default': {
@@ -35,7 +34,7 @@ else:
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '*.xtendapp.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.xtendapp.com']
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -71,11 +70,11 @@ MEDIA_URL = '/media/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = "/home/piercegs/webapps/cbc_static/:"
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
-STATIC_URL = '/static/'
+STATIC_URL = 'http://centralbcs.xtendapp.com/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -217,7 +216,39 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-try:
-    from local_settings import *
-except ImportError:
-    pass
+
+SERVER_EMAIL = 'django@centralbcs.xtendapp.com'
+
+EMAIL_HOST = 'smtp.webfaction.com'
+EMAIL_HOST_USER = 'tim_jr'
+EMAIL_HOST_PASSWORD = 'flysolo1'
+DEFAULT_FROM_EMAIL = 'adulteducation@centralbcs.org'
+
+
+SITE_ID = 1
+SITE_HEADER = 'Central Baptist Church'
+SITE_TITLE = 'Central Baptist Church'
+
+################
+# ACS Settings #
+################
+ACS_SITE_ID = 11607
+ACS_USER = 'jpierce'
+ACS_PASS = 'mshmother3'
+
+#######################
+# Faith Path Settings #
+#######################
+
+FAITH_PATH_FROM_EMAIL = 'faithpath@centralbcs.org'
+FAITH_PATH_MIN_CHILD_EMAIL_AGE = 16
+
+###############################
+# Face 2 Face Signup Settings #
+###############################
+# Email addresses to send a notification to once the GROUP_SIGNUP_ACTIVE flag is False.
+F2F_FROM_EMAIL = 'smallgroups@centralbcs.org'
+
+# Export Fields
+EXPORT_FIELDS = ['id', 'group', 'ministry', 'student_class', 'first_name', 'last_name', 'gender', 'dob',
+                 'phone', 'email', 'address', 'address2', 'city', 'state', 'postal_code', 'comments']
