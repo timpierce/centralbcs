@@ -8,6 +8,7 @@ admin.autodiscover()
 urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name="index.html"), name='Index'),
     url(r'^f2fsignup/', include('f2fsignup.urls')),
+    url(r'^faithpath/', include('faithpath.urls')),
     url(r'^admin/', include(admin.site.urls)),
 ]
 

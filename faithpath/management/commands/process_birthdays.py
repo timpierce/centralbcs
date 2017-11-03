@@ -26,21 +26,27 @@ class Command(BaseCommand):
         today = datetime.today()
         for child in Child.objects.filter(dob__month=today.month, dob__day=today.day):
             try:
-                person = get_person(child.indvid)
-                if person['MemberStatus'] not in ['Former Member', 'Non-Resident Mem.']:
-                    logger.info('Processing birthday for ' + str(child.indvid))
+                if child.indvid:
+                    person = get_person(child.indvid)
+                else:
+                    person = dict(FirstName=child.first_name)
+
+                if person.get('MemberStatus') not in ['Former Member', 'Non-Resident Mem.']:
+                    logger.info('Processing birthday for ' + str(child))
                     age = relativedelta(datetime.today(), child.dob).years
                     message = BirthdayMessage.objects.get(pk=age)
                     try:
-                        ActivityLog.objects.get(message=message, child=child.indvid)
-                        logger.warning('Email has been previously sent for ' + str(child.indvid))
+                        ActivityLog.objects.get(message=message, child=child)
+                        logger.warning('Email has been previously sent for ' + str(child))
                     except ActivityLog.MultipleObjectsReturned:
-                        logger.warning('Email has been previously sent multiple times for ' + str(child.indvid))
+                        logger.warning('Email has been previously sent multiple times for ' + str(child))
                     except ObjectDoesNotExist:
 
                         # Build Email Address List
                         person['email_to'] = []
-                        for family_member in person['FamilyMembers']:
+                        if child.email_address:
+                            person['email_to'].append(child.email_address)
+                        for family_member in person.get('FamilyMembers', []):
                             if family_member['FamilyPosition'] in ['Head', 'Spouse']:
                                 parent = get_person(family_member['IndvId'])
                                 for email in parent['Emails']:
@@ -69,18 +75,15 @@ class Command(BaseCommand):
                         email.send()
 
                         # Log that the email was sent
-                        activity_log = ActivityLog()
-                        activity_log.child = child
-                        activity_log.message = message
-                        activity_log.save()
+                        ActivityLog(child=child, message=message).save()
             except KeyError, e:
-                logger.error('Cannot process {}. The field {} does not exist.'.format(child.indvid, e.message))
+                logger.error('Cannot process {}. The field {} does not exist.'.format(child, e.message))
             except ObjectDoesNotExist:
                 logger.info(
-                    'There is no message established for {} year olds. Skipping id: {}'.format(age, child.indvid))
+                    'There is no message established for {} year olds. Skipping id: {}'.format(age, child))
             except ConnectionError, e:
                 logger.info(e)
             except HTTPError, e:
                 if e.response.status_code == 404:
-                    logger.warning('The record for {} no longer exists in ACS.'.format(child.indvid))
+                    logger.warning('The record for {} no longer exists in ACS.'.format(child))
         self.stdout.write(self.style.SUCCESS('Successfully processed birthdays'))

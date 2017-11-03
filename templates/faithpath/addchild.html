@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static from staticfiles %}
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static '_css/f2f_form.css' %}" media="screen"/>
+{% endblock %}
+{%  block title %}Faith Path Child Signup | Central Baptist Church | College Station{% endblock %}
+{% block h1 %}Faith Path Child Signup{% endblock %}
+{% block content %}
+    <div id="text">
+        <p>  If you would like to add a child to the Faith Path system who <strong>does not</strong> already attend Central Baptist Church, please
+            fill out the following information:
+        </p></div>
+    <div id="signup_form">
+        <table>
+            <tr>
+                <td style="vertical-align: top">
+                    <form method="post" action="">
+                        {% csrf_token %}
+                        <div>
+                            <div id="form-error">{{ form.first_name.errors|striptags }}</div>
+                            <input placeholder="Child's First Name" name="first_name"
+                                   value={{ form.first_name.value | default_if_none:"" }}>&nbsp;
+                        </div>
+                        <div>
+                            <div id="form-error">{{ form.dob.errors|striptags }}</div>
+                            <input placeholder="Child's DOB" name="dob" class="datetime-input"
+                                   value={{ form.dob.value | default_if_none:"" }}>&nbsp;
+                        </div>
+                        <div>
+                            <div id="form-error">{{ form.email_address.errors|striptags }}</div>
+                            <input size="47" name="email_address" placeholder="Paren'ts Email Address"
+                                   value={{ form.email_address.value | default_if_none:"" }}></div>
+                        <br>
+                        <div>
+                            <input type="submit" value="Submit Information"/>&nbsp;<input value="Cancel" action="action"
+                                                                                        type="button"
+                                                                                        onclick="parent.location='http://www.centralbcs.org'"/>
+                        </div>
+                    </form>
+                </td>
+                <td style="vertical-align: text-top; text-align: center"><img style="padding: 40px;visibility:hidden" src="{% static '/images/face2face.jpg' %}"/>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+
+{% endblock %}

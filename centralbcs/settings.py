@@ -3,7 +3,7 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-PROD = False
+PROD = True
 DEBUG = True
 
 ADMINS = (
@@ -220,8 +220,11 @@ AUTH_PASSWORD_VALIDATORS = [
 SERVER_EMAIL = 'django@centralbcs.xtendapp.com'
 
 EMAIL_HOST = 'smtp.webfaction.com'
+EMAIL_PORT = 465
 EMAIL_HOST_USER = 'tim_jr'
 EMAIL_HOST_PASSWORD = 'flysolo1'
+EMAIL_USE_SSL = True
+
 DEFAULT_FROM_EMAIL = 'adulteducation@centralbcs.org'
 
 

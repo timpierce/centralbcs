@@ -1,8 +1,31 @@
-{% extends "f2fsignup/base.html" %}
+{% extends "base.html" %}
 {% load signup_extras %}
 {% load static from staticfiles %}
 {% block head %}
     <link rel="stylesheet" type="text/css" href="{% static '_css/f2f_list.css' %}" media="screen"/>
+{% endblock %}
+{%  block title %}Face2Face Group Signup | Central Baptist Church | College Station{% endblock %}
+{% block h1 %}Face to Face Small Groups Signup{% endblock %}
+{% block sidebar %}
+    <section id="sidebar-nav">
+        <header>
+            <a href='http://centralbcs.org/small-groups/'><h2 class='sidebar-title'>Face to Face Small
+                Groups</h2></a></header>
+        <div>
+            <ul id="subnav">
+                <li class="current" id="subnav_ministries_small-groups_small-groups-signup"><a
+                        href="http://centralbcs.org/ministries/face-to-face-small-groups/face-to-face-small-groups-signup/">Face
+                    To Face Small Groups Signup</a></li>
+                <li id="subnav_ministries_small-groups_weekly-homework"><a
+                        href="http://centralbcs.org/ministries/face-to-face-small-groups/weekly-study-guide/">Weekly
+                    Study Guide</a></li>
+            </ul>
+        </div>
+    </section>
+    <!--	<section class='sidebar-section module'><header><h4 class='sidebar-title'>Upcoming Events</h2></header><div class='text'><div class="events"><div class='event'>  <a class='date'  href='/event/631033-2014-08-24-sunday-morning-worship'>    <span class='month'>Aug</span>    <span class='day'>24</span>  </a>  <div class='details'>    <h3><a href='/event/631033-2014-08-24-sunday-morning-worship'>Sunday Morning Worship</a></h3>    <p class='dateTime'>Every Sunday<span class='event-sep'>, </span><span class="eventTime"> 9:45 AM - 11:00 AM</span></p>  </div></div><div class='event'>  <a class='date'  href='/event/637747-2014-08-27-wednesday-evening-worship'>    <span class='month'>Aug</span>    <span class='day'>27</span>  </a>  <div class='details'>    <h3><a href='/event/637747-2014-08-27-wednesday-evening-worship'>Wednesday Evening Worship</a></h3>    <p class='dateTime'>Every Wednesday<span class='event-sep'>, </span><span class="eventTime"> 6:00 PM -  7:00 PM</span></p>  </div></div><div class='event'>  <a class='date'  href='/event/631639-2014-09-06-billy-graham-phone-center'>    <span class='month'>Sep</span>    <span class='day'>6</span>  </a>  <div class='details'>    <h3><a href='/event/631639-2014-09-06-billy-graham-phone-center'>Billy Graham Phone Center</a></h3>    <p class='dateTime'>First Saturday of the month<span class='event-sep'>, </span><span class="eventTime"> 7:15 PM - 10:30 PM</span></p>  </div></div><div class='event'>  <a class='date'  href='/event/631671-2014-09-21-church-wide-missions-lunch'>    <span class='month'>Sep</span>    <span class='day'>21</span>  </a>  <div class='details'>    <h3><a href='/event/631671-2014-09-21-church-wide-missions-lunch'>Church-Wide Missions Lunch</a></h3>    <p class='dateTime'>Sunday, September 21, 2014<span class='event-sep'>, </span><span class="eventTime">12:30 PM -  2:00 PM</span></p>  </div></div>
+    <p class="more"><a href="http://centralbcs.org/calendar/">View All Events &gt;</a></p>
+    </div></div></section>
+    -->
 {% endblock %}
 {% block content %}
     <div id="text">
