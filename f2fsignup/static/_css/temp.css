@@ -55,7 +55,7 @@ nav.mobile {
 }
 
 #mobile-home > li > ul ul a::before, ul#menu-more-links > li > ul ul a::before {
-	content: "Â» "
+	content: "» "
 }
 
 @media (min-width: 61.5em) {
