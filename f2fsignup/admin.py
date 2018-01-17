@@ -39,6 +39,7 @@ class MemberAdmin(admin.ModelAdmin):
     list_display = ['name', 'ministry', 'group', 'added']
     list_filter = ('group', 'ministry')
     search_fields = ['^first_name', '^last_name']
+    readonly_fields = ('added',)
     actions = [export_members_action]
 
 
