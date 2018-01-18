@@ -1,4 +1,4 @@
-Django==1.11
+Django==1.11.9
 django-storages==1.6.5
 python-dateutil==2.6.1
 requests==2.18.4

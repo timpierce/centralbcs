@@ -2,7 +2,7 @@ from csv import reader
 from datetime import datetime
 
 from django.core.management.base import BaseCommand
-from f2fsignup.models import Member, Group
+from f2fsignup.models import Member, Group, Ministry
 
 
 class Command(BaseCommand):
@@ -18,12 +18,12 @@ class Command(BaseCommand):
             for row in acs_reader:
                 member = Member()
                 try:
-                    member.group = Group.objects.get(name=row[0])
-                    member.ministry = row[1]
+                    member.group = Group.objects.get(name=row[0].strip())
+                    member.ministry = Ministry.objects.get(name=row[1])
                     member.first_name = row[2]
                     member.last_name = row[3]
                     member.gender = row[4][0]
-                    member.dob = datetime.strptime(row[5], '%m/%d/%y')
+                    member.dob = datetime.strptime(row[5], '%m/%d/%Y')
                     member.phone = row[6]
                     member.email = row[7]
                     member.address = row[8]
