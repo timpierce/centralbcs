@@ -1,10 +1,8 @@
 import logging
 
 from requests import HTTPError, ConnectionError
-from dateutil.relativedelta import relativedelta
-from datetime import datetime
 from string import Template
-from smtplib import SMTPException
+from smtplib import SMTPRecipientsRefused
 
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage
@@ -20,11 +18,10 @@ logger = logging.getLogger(__name__)
 
 
 class Command(BaseCommand):
-    help = 'Processes birthdays for sending Faith Path emails'
+    help = 'Sends welcome to FaithPATH emails'
 
     def handle(self, *args, **options):
-        today = datetime.today()
-        for child in Child.objects.filter(dob__month=today.month, dob__day=today.day):
+        for child in Child.objects.filter(pk__gte=3929):
             try:
                 if child.indvid:
                     person = get_person(child.indvid)
@@ -32,9 +29,8 @@ class Command(BaseCommand):
                     person = dict(FirstName=child.first_name)
 
                 if person.get('MemberStatus') not in ['Former Member', 'Non-Resident Mem.']:
-                    logger.info('Processing birthday for ' + str(child))
-                    age = relativedelta(datetime.today(), child.dob).years
-                    message = BirthdayMessage.objects.get(pk=age)
+                    logger.info('Processing welcome emails for ' + str(child))
+                    message = BirthdayMessage.objects.get(pk=100)
                     try:
                         ActivityLog.objects.get(message=message, child=child)
                         logger.warning('Email has been previously sent for ' + str(child))
@@ -51,9 +47,6 @@ class Command(BaseCommand):
                                 parent = get_person(family_member['IndvId'])
                                 for email in parent['Emails']:
                                     person['email_to'].append(email['Email'])
-                        if age >= settings.FAITH_PATH_MIN_CHILD_EMAIL_AGE:
-                            for email in person['Emails']:
-                                person['email_to'].append(email['Email'])
 
                         # Send Email
                         email_addresses = list(set(person['email_to']))
@@ -62,7 +55,7 @@ class Command(BaseCommand):
                             Template(message.subject).substitute(person),
                             Template(message.content).substitute(person),
                             settings.FAITH_PATH_FROM_EMAIL,
-                            email_addresses
+                            email_addresses,
                         )
                         email.content_subtype = 'html'
                         if message.attachment:
@@ -74,16 +67,13 @@ class Command(BaseCommand):
 
                         # Log that the email was sent
                         ActivityLog(child=child, message=message).save()
-            except SMTPException, e:
-                logger.error('Cannot process {}. {}'.format(child, e.message))
+            except SMTPRecipientsRefused, e:
+                logger.error('Cannot process {}. {}.'.format(child, e.message))
             except KeyError, e:
                 logger.error('Cannot process {}. The field {} does not exist.'.format(child, e.message))
-            except ObjectDoesNotExist:
-                logger.info(
-                    'There is no message established for {} year olds. Skipping id: {}'.format(age, child))
             except ConnectionError, e:
                 logger.info(e)
             except HTTPError, e:
                 if e.response.status_code == 404:
                     logger.warning('The record for {} no longer exists in ACS.'.format(child))
-        self.stdout.write(self.style.SUCCESS('Successfully processed birthdays'))
+        self.stdout.write(self.style.SUCCESS('Successfully processed welcome emails.'))
