@@ -242,7 +242,7 @@ ACS_PASS = 'mshmother3'
 #######################
 # Faith Path Settings #
 #######################
-
+RECORD_SOURCE = 'centralbcs.acs'
 FAITH_PATH_FROM_EMAIL = 'faithpath@centralbcs.org'
 FAITH_PATH_MIN_CHILD_EMAIL_AGE = 16
 

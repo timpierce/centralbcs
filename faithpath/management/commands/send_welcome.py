@@ -1,19 +1,18 @@
 import logging
-
-from requests import HTTPError, ConnectionError
-from string import Template
+import importlib
 from smtplib import SMTPRecipientsRefused
+from string import Template
 
+from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage
 from django.core.mail.message import EmailMessage
 from django.core.management.base import BaseCommand
-from django.conf import settings
+from requests import HTTPError, ConnectionError
 
 from faithpath.models import Child, BirthdayMessage, ActivityLog
-from faithpath.management.acs import get_person
 
-
+record_source = importlib.import_module(settings.RECORD_SOURCE)
 logger = logging.getLogger(__name__)
 
 
@@ -24,7 +23,7 @@ class Command(BaseCommand):
         for child in Child.objects.filter(pk__gte=3929):
             try:
                 if child.indvid:
-                    person = get_person(child.indvid)
+                    person = record_source.get_person(child.indvid)
                 else:
                     person = dict(FirstName=child.first_name)
 
@@ -44,7 +43,7 @@ class Command(BaseCommand):
                             person['email_to'].append(child.email_address)
                         for family_member in person.get('FamilyMembers', []):
                             if family_member['FamilyPosition'] in ['Head', 'Spouse']:
-                                parent = get_person(family_member['IndvId'])
+                                parent = record_source.get_person(family_member['IndvId'])
                                 for email in parent['Emails']:
                                     person['email_to'].append(email['Email'])
 

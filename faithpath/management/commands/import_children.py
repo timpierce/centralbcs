@@ -1,15 +1,16 @@
-import logging
 import itertools
-from requests import HTTPError
-from dateutil.relativedelta import relativedelta
+import logging
+import importlib
 from datetime import datetime
 
+from dateutil.relativedelta import relativedelta
 from django.core.management.base import BaseCommand
+from django.conf import settings
+from requests import HTTPError
 
 from faithpath.models import Child
-from faithpath.management.acs import get_person
 
-
+record_source = importlib.import_module(settings.RECORD_SOURCE)
 logger = logging.getLogger(__name__)
 
 
@@ -32,7 +33,7 @@ class Command(BaseCommand):
         for i in itertools.count(start=last_id + 1):
             logger.info('Processing for import id: {}'.format(i))
             try:
-                person = get_person(i)
+                person = record_source.get_person(i)
                 count_404 = 0  # Reset 404 counter. If we find a record we try for ACS_MAX_HTTP_404 more people.
                 logger.info(person)
                 if person['DateOfBirth']:
