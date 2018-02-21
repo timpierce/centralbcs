@@ -13,7 +13,7 @@ from django.core.mail.message import EmailMessage
 from django.core.management.base import BaseCommand
 from django.conf import settings
 
-from faithpath.models import Child, BirthdayMessage, ActivityLog
+from faithpath.models import Child, BirthdayMessage, ActivityLog, BlacklistEmail
 
 record_source = importlib.import_module(settings.RECORD_SOURCE)
 logger = logging.getLogger(__name__)
@@ -57,6 +57,13 @@ class Command(BaseCommand):
 
                         # Send Email
                         email_addresses = list(set(person['email_to']))
+                        for email_address in email_addresses:
+                            try:
+                                if BlacklistEmail.objects.get(email_address=email_address):
+                                    email_addresses.remove(email_address)
+                                    logger.info(email_address + ' was removed due to blacklisting.')
+                            except ObjectDoesNotExist, e:
+                                pass
                         logger.info('Email will be sent to ' + str(email_addresses))
                         email = EmailMessage(
                             Template(message.subject).substitute(person),

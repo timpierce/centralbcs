@@ -31,3 +31,10 @@ class ActivityLog(models.Model):
     child = models.ForeignKey(Child)
     message = models.ForeignKey(BirthdayMessage)
     sent = models.DateTimeField(auto_now_add=True)
+
+
+class BlacklistEmail(models.Model):
+    email_address = models.EmailField(null=True)
+
+    def __unicode__(self):
+        return self.email_address
